@@ -1,11 +1,11 @@
 package WSN_EnergyEfficient;
-
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.node.inet.AdhocHost;
 import inet.node.inet.WirelessHost;
 import inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
 import inet.visualizer.canvas.integrated.IntegratedCanvasVisualizer;
-
+import inet.routing.aodv.Aodv;
+import inet.routing.dsdv.Dsdv;
 module SensorNode extends AdhocHost
 {
     parameters:
