@@ -1,9 +1,9 @@
 version 3
-run General-0-20250701-23:36:43-25976
-attr configname General
-attr datetime 20250701-23:36:43
-attr datetimef 20250701-233643
-attr experiment General
+run LEACH-0-20250701-23:37:01-25976
+attr configname LEACH
+attr datetime 20250701-23:37:01
+attr datetimef 20250701-233701
+attr experiment LEACH
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvarsd ""
@@ -17,6 +17,34 @@ attr resultdir results
 attr runnumber 0
 attr seedset 0
 config image-path ../../inet4.5/images
+config network WSN_EnergyEfficient
+config sim-time-limit 200s
+config *.sensorNode*.typename LeachNode
+config *.sensorNode*.clusterHeadProbability 0.05
+config *.sensorNode*.initialEnergy 0.15J
+config *.sensorNode*.hasStatus true
+config *.sensorNode*.energyStorage.typename SimpleEpEnergyStorage
+config *.sensorNode*.wlan[0].radio.energyConsumer.typename StateBasedEpEnergyConsumer
+config *.sensorNode*.energyManagement.typename SimpleEpEnergyManagement
+config *.sensorNode*.energyStorage.nominalCapacity 0.15J
+config *.sensorNode*.energyStorage.initialCapacity 0.15J
+config *.sensorNode*.energyStorage.printCapacityStep 0.0015J
+config *.sensorNode*.energyManagement.nodeShutdownCapacity 0.06J
+config *.sensorNode*.energyManagement.nodeStartCapacity 0.09J
+config **.wlan[*].typename Ieee802154NarrowbandInterface
+config **.wlan[*].radio.transmitter.power 2.24mW
+config **.wlan[*].radio.receiver.sensitivity -85dBm
+config **.wlan[*].radio.receiver.energyDetection -85dBm
+config **.wlan[*].radio.receiver.snirThreshold 4dB
+config **.wlan[*].radio.centerFrequency 2.4GHz
+config **.wlan[*].radio.bandwidth 2MHz
+config *.sensorNode*.vector-recording true
+config *.sensorNode*.scalar-recording true
+config *.sensorNode*.roundNumber.vector-recording true
+config *.sensorNode*.isClusterHead.vector-recording true
+config *.sensorNode*.residualEnergy.vector-recording true
+config *.sensorNode*.packetsToBS.vector-recording true
+config *.sensorNode*.packetsToClusterHead.vector-recording true
 config network WSN_EnergyEfficient
 config sim-time-limit 200s
 config *.visualizer.energyStorageVisualizer.displayEnergyStorages true
