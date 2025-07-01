@@ -2,7 +2,7 @@ package WSN_EnergyEfficient;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.node.inet.AdhocHost;
 import inet.node.inet.WirelessHost;
-import inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
+import inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandScalarRadioMedium;
 import inet.visualizer.canvas.integrated.IntegratedCanvasVisualizer;
 import inet.routing.aodv.Aodv;
 import inet.routing.dsdv.Dsdv;
@@ -20,7 +20,9 @@ module AccessPoint extends WirelessHost
 
 network WSN_EnergyEfficient
 {
-    @display("bgb=900,650,,,0;i=background/terrain,,0");
+    parameters:
+        @display("bgb=936,688,,,0;bgg=100,1,grey95;i=background/terrain,,0");
+        @figure[title](type=label; pos=0,0; anchor=sw; color=darkblue);
 
     submodules:
         visualizer: IntegratedCanvasVisualizer {
@@ -31,60 +33,60 @@ network WSN_EnergyEfficient
             @display("p=100,200");
         }
 
-        radioMedium: Ieee80211ScalarRadioMedium {
+        radioMedium: Ieee802154NarrowbandScalarRadioMedium {
             @display("p=100,300");
         }
 
         sensorNode0: SensorNode {
-            @display("p=770,394");
+            @display("p=676,601");
         }
         sensorNode1: SensorNode {
-            @display("p=729,203");
+            @display("p=754,143");
         }
         sensorNode2: SensorNode {
-            @display("p=573,501");
+            @display("p=729,455");
         }
         sensorNode3: SensorNode {
-            @display("p=704,501");
+            @display("p=582,502");
         }
         sensorNode4: SensorNode {
-            @display("p=463,483");
+            @display("p=453,600");
         }
         sensorNode5: SensorNode {
-            @display("p=283,395");
+            @display("p=281,409");
         }
         sensorNode6: SensorNode {
-            @display("p=326,501");
+            @display("p=255,535");
         }
         sensorNode7: SensorNode {
-            @display("p=356,103");
+            @display("p=384,301");
         }
         sensorNode8: SensorNode {
-            @display("p=232,146");
+            @display("p=281,142");
         }
         sensorNode9: SensorNode {
             @display("p=245,268");
         }
         sensorNode10: SensorNode {
-            @display("p=573,99");
+            @display("p=453,74");
         }
         sensorNode11: SensorNode {
-            @display("p=442,179");
+            @display("p=583,345");
         }
         sensorNode12: SensorNode {
-            @display("p=604,203");
+            @display("p=652,231");
         }
         sensorNode13: SensorNode {
-            @display("p=757,111");
+            @display("p=622,98");
         }
         sensorNode14: SensorNode {
-            @display("p=704,301");
+            @display("p=806,312");
         }
 
         accessPoint0: AccessPoint {
-            @display("p=433,301");
+            @display("p=453,433");
         }
         accessPoint1: AccessPoint {
-            @display("p=565,365");
+            @display("p=510,200");
         }
 }
