@@ -1,5 +1,7 @@
 # Energy-Efficient Wireless Sensor Network Implementation Using LEACH Protocol
 
+This project implements an energy-efficient Wireless Sensor Network (WSN) using the Low Energy Adaptive Clustering Hierarchy (LEACH) protocol. The implementation is built using the OMNeT++ simulation framework with the INET library, focusing on IEEE 802.15.4 standard compliance and energy efficiency optimization.
+
 
 ## Project Overview
 
