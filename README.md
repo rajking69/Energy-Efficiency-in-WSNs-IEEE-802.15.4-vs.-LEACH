@@ -1,6 +1,4 @@
-You said:
 # Energy-Efficient Wireless Sensor Network Implementation Using LEACH Protocol
-
 
 
 ## Project Overview
