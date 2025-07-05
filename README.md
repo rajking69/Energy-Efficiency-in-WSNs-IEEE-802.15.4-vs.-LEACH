@@ -8,7 +8,7 @@
 [![IEEE](https://img.shields.io/badge/IEEE-802.15.4-orange.svg)](https://standards.ieee.org/)
 [![LEACH](https://img.shields.io/badge/LEACH-Protocol-yellow.svg)](https://en.wikipedia.org/wiki/Low-energy_adaptive_clustering_hierarchy)
 
-<img src="[https://www.iiuc.ac.bd/storage/app/public/media/iiuc-logo.png" alt="IIUC Logo" width="150](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTTsAZ9o5WfwbX3_HekffcoUmc1j6ZdQrvkw&s)"/>
+
 
 # International Islamic University Chittagong
 ## Department of Computer Science & Engineering
