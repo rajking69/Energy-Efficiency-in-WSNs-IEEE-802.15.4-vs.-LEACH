@@ -224,7 +224,4 @@ WSN_EnergyEfficient/
 **Department of Computer Science & Engineering**  
 International Islamic University Chittagong  
 Kumira, Chittagong-4318, Bangladesh
-
-*Spring 2024*
-
 </div> 
