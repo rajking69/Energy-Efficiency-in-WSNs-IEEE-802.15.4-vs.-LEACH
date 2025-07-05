@@ -34,7 +34,6 @@ A comprehensive comparative analysis of energy efficiency in Wireless Sensor Net
 ### 👨‍🏫 Supervisor
 <table>
   <tr>
-    <td align="center">
       <br />
       <sub><b>Mr. Abdullahil Kafi</b></sub>
       <br />
@@ -103,32 +102,6 @@ A comprehensive comparative analysis of energy efficiency in Wireless Sensor Net
     </td>
   </tr>
 </table>
-
-### 📊 Project Leadership Distribution
-```mermaid
-pie
-    title Project Contribution Breakdown
-    "Team Leader (Core Implementation)" : 70
-    "Member 1 (Basic Support)" : 20
-    "Member 2 (Documentation)" : 10
-```
-
-### 📈 Contribution Timeline
-```mermaid
-gantt
-    title Project Development Phases
-    dateFormat  YYYY-MM-DD
-    section Core Development
-    LEACH Implementation     :2024-01-01, 30d
-    IEEE 802.15.4 Integration:2024-01-15, 25d
-    Energy Optimization     :2024-02-01, 20d
-    section Support Tasks
-    Network Setup          :2024-01-10, 10d
-    Testing Support        :2024-02-01, 15d
-    section Documentation
-    Basic Documentation    :2024-02-15, 10d
-    Final Report          :2024-03-01, 15d
-```
 
 ### 🔄 Development Workflow
 ```mermaid
