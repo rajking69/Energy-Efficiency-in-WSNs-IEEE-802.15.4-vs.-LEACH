@@ -1,8 +1,8 @@
 version 3
-run LEACH-0-20250701-23:37:01-25976
+run LEACH-0-20250705-20:03:53-19820
 attr configname LEACH
-attr datetime 20250701-23:37:01
-attr datetimef 20250701-233701
+attr datetime 20250705-20:03:53
+attr datetimef 20250705-200353
 attr experiment LEACH
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,7 +10,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network WSN_EnergyEfficient
-attr processid 25976
+attr processid 19820
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -556,7 +556,7 @@ par WSN_EnergyEfficient.visualizer.physicalLinkVisualizer interfaceFilter "\"*\"
 attr mutable ""
 par WSN_EnergyEfficient.visualizer.physicalLinkVisualizer packetFilter "(omnetpp::cValueHolder)holder: \"*\""
 attr mutable ""
-par WSN_EnergyEfficient.visualizer.physicalLinkVisualizer lineColor "\"olive\""
+par WSN_EnergyEfficient.visualizer.physicalLinkVisualizer lineColor "\"green\""
 par WSN_EnergyEfficient.visualizer.physicalLinkVisualizer lineStyle "\"dotted\""
 par WSN_EnergyEfficient.visualizer.physicalLinkVisualizer lineWidth 3
 par WSN_EnergyEfficient.visualizer.physicalLinkVisualizer lineShift 16
@@ -683,7 +683,7 @@ par WSN_EnergyEfficient.visualizer.networkRouteVisualizer packetFilter "(omnetpp
 attr mutable ""
 par WSN_EnergyEfficient.visualizer.networkRouteVisualizer lineColor "\"blue\""
 par WSN_EnergyEfficient.visualizer.networkRouteVisualizer lineStyle "\"solid\""
-par WSN_EnergyEfficient.visualizer.networkRouteVisualizer lineWidth 3
+par WSN_EnergyEfficient.visualizer.networkRouteVisualizer lineWidth 2
 par WSN_EnergyEfficient.visualizer.networkRouteVisualizer lineSmooth false
 par WSN_EnergyEfficient.visualizer.networkRouteVisualizer lineShift 16
 par WSN_EnergyEfficient.visualizer.networkRouteVisualizer lineShiftMode "\"normal\""
@@ -880,9 +880,9 @@ scalar WSN_EnergyEfficient.radioMedium "transmission count" 724
 scalar WSN_EnergyEfficient.radioMedium "signal send count" 11584
 scalar WSN_EnergyEfficient.radioMedium "reception computation count" 11056
 scalar WSN_EnergyEfficient.radioMedium "interference computation count" 33874
-scalar WSN_EnergyEfficient.radioMedium "reception decision computation count" 3708
-scalar WSN_EnergyEfficient.radioMedium "listening decision computation count" 19116
-scalar WSN_EnergyEfficient.radioMedium "reception cache hit" 80.086455331412
+scalar WSN_EnergyEfficient.radioMedium "reception decision computation count" 3779
+scalar WSN_EnergyEfficient.radioMedium "listening decision computation count" 19045
+scalar WSN_EnergyEfficient.radioMedium "reception cache hit" 80.162560780866
 attr unit %
 scalar WSN_EnergyEfficient.radioMedium "interference cache hit" 66.666666666667
 attr unit %
@@ -905,7 +905,7 @@ attr unit J
 par WSN_EnergyEfficient.sensorNode0.energyStorage printCapacityStep 0.0015J
 attr unit J
 par WSN_EnergyEfficient.sensorNode0.energyStorage displayStringTextFormat "\"%c (%p)\""
-scalar WSN_EnergyEfficient.sensorNode0.energyStorage residualEnergyCapacity:last 0.14157516231145
+scalar WSN_EnergyEfficient.sensorNode0.energyStorage residualEnergyCapacity:last 0.14148735431149
 attr interpolationmode linear
 attr recordingmode last
 attr source residualEnergyCapacityChanged
@@ -1271,7 +1271,7 @@ par WSN_EnergyEfficient.sensorNode0.wlan[0].mac macMinBE 3
 par WSN_EnergyEfficient.sensorNode0.wlan[0].mac macMaxBE 5
 par WSN_EnergyEfficient.sensorNode0.wlan[0].mac radioModule "\"^.radio\""
 scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac nbTxFrames 44
-scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac nbRxFrames 38
+scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac nbRxFrames 40
 scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac nbDroppedFrames 0
 scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac nbMissedAcks 0
 scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac nbRecvdAcks 0
@@ -1280,12 +1280,12 @@ scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac nbDuplicates 0
 scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac meanBackoff 0.0011927272727273
 scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac nbBackoffs 44
 scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac backoffDurations 0.05248
-scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac packetDropNotAddressToUs:count 68
+scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac packetDropNotAddressToUs:count 93
 attr interpolationmode none
 attr recordingmode count
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
 attr title "packet drop: not addressed to us, count"
-scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac packetDropNotAddressToUs:sum(packetBytes) 3668
+scalar WSN_EnergyEfficient.sensorNode0.wlan[0].mac packetDropNotAddressToUs:sum(packetBytes) 4977
 attr interpolationmode none
 attr recordingmode sum(packetBytes)
 attr source packetDropReasonIsNotAddressedToUs(packetDropped)
@@ -1424,22 +1424,29 @@ attr unit Hz
 par WSN_EnergyEfficient.sensorNode0.wlan[0].radio signalAnalogRepresentation "\"scalar\""
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.sensorNode0.wlan[0].radio minSnir:histogram
-field count 106
-field mean 879.33625552909
-field stddev 308.28033329374
-field min 445.07044261238
+field count 133
+field mean 767.16187244606
+field stddev 354.07902847675
+field min 326.77355367566
 field max 1187.6027853793
-field sum 93209.643086083
-field sqrsum 91941478.739568
+field sum 102032.52903533
+field sqrsum 94824564.534877
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
 bin	-inf	0
+bin	100	0
+bin	120	0
+bin	140	0
+bin	160	0
+bin	180	0
+bin	200	0
+bin	220	0
 bin	240	0
 bin	260	0
 bin	280	0
 bin	300	0
-bin	320	0
+bin	320	27
 bin	340	0
 bin	360	0
 bin	380	0
@@ -1493,8 +1500,10 @@ bin	1320	0
 bin	1340	0
 bin	1360	0
 bin	1380	0
+bin	1400	0
+bin	1420	0
 statistic WSN_EnergyEfficient.sensorNode0.wlan[0].radio packetErrorRate:histogram
-field count 106
+field count 133
 field mean 0
 field stddev 0
 field min 0
@@ -1530,7 +1539,7 @@ bin	-0.08	0
 bin	-0.06	0
 bin	-0.04	0
 bin	-0.02	0
-bin	0	106
+bin	0	133
 bin	0.02	0
 bin	0.04	0
 bin	0.06	0
@@ -1557,7 +1566,7 @@ bin	0.46	0
 bin	0.48	0
 bin	0.5	0
 statistic WSN_EnergyEfficient.sensorNode0.wlan[0].radio bitErrorRate:histogram
-field count 106
+field count 133
 field mean 0
 field stddev 0
 field min 0
@@ -1593,7 +1602,7 @@ bin	-0.08	0
 bin	-0.06	0
 bin	-0.04	0
 bin	-0.02	0
-bin	0	106
+bin	0	133
 bin	0.02	0
 bin	0.04	0
 bin	0.06	0
@@ -1638,7 +1647,7 @@ attr interpolationmode sample-hold
 attr recordingmode count
 attr source transmissionStateChanged
 attr title "Radio transmission state, count"
-scalar WSN_EnergyEfficient.sensorNode0.wlan[0].radio receptionState:count 303
+scalar WSN_EnergyEfficient.sensorNode0.wlan[0].radio receptionState:count 357
 attr interpolationmode sample-hold
 attr recordingmode count
 attr source receptionStateChanged
@@ -3805,12 +3814,12 @@ par WSN_EnergyEfficient.sensorNode2.wlan[0].radio signalAnalogRepresentation "\"
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.sensorNode2.wlan[0].radio minSnir:histogram
 field count 158
-field mean 756.39619727676
-field stddev 207.14717240011
+field mean 774.79376736483
+field stddev 203.07607912612
 field min 394.49876323168
 field max 929.27001054301
-field sum 119510.59916973
-field sqrsum 97134225.058486
+field sum 122417.41524364
+field sqrsum 101322913.69206
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
@@ -3855,7 +3864,7 @@ bin	620	0
 bin	630	0
 bin	640	0
 bin	650	0
-bin	660	25
+bin	660	0
 bin	670	0
 bin	680	0
 bin	690	0
@@ -3866,7 +3875,7 @@ bin	730	0
 bin	740	0
 bin	750	0
 bin	760	0
-bin	770	0
+bin	770	25
 bin	780	0
 bin	790	0
 bin	800	0
@@ -5167,12 +5176,12 @@ par WSN_EnergyEfficient.sensorNode3.wlan[0].radio signalAnalogRepresentation "\"
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.sensorNode3.wlan[0].radio minSnir:histogram
 field count 323
-field mean 1008.3117148006
-field stddev 98.670403337921
+field mean 1017.8257303455
+field stddev 92.460789616915
 field min 843.3359920409
 field max 1187.6027853793
-field sum 325684.68388058
-field sqrsum 331526625.30326
+field sum 328757.71090158
+field sqrsum 337370834.43764
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
@@ -5191,7 +5200,7 @@ bin	850	0
 bin	860	0
 bin	870	0
 bin	880	0
-bin	890	29
+bin	890	0
 bin	900	0
 bin	910	0
 bin	920	39
@@ -5202,7 +5211,7 @@ bin	960	0
 bin	970	0
 bin	980	0
 bin	990	0
-bin	1000	0
+bin	1000	29
 bin	1010	0
 bin	1020	0
 bin	1030	174
@@ -10800,12 +10809,12 @@ par WSN_EnergyEfficient.sensorNode7.wlan[0].radio signalAnalogRepresentation "\"
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.sensorNode7.wlan[0].radio minSnir:histogram
 field count 338
-field mean 867.08970649611
-field stddev 231.47174279788
+field mean 861.85402507347
+field stddev 239.54614794016
 field min 393.20222261704
 field max 1084.4367031413
-field sum 293076.32079569
-field sqrsum 272179640.49927
+field sum 291306.66047483
+field sqrsum 270401672.16757
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
@@ -10822,10 +10831,10 @@ bin	380	33
 bin	400	0
 bin	420	0
 bin	440	0
-bin	460	0
+bin	460	29
 bin	480	0
 bin	500	0
-bin	520	29
+bin	520	0
 bin	540	0
 bin	560	0
 bin	580	0
@@ -15658,7 +15667,7 @@ par WSN_EnergyEfficient.sensorNode11.wlan[0].mac macMinBE 3
 par WSN_EnergyEfficient.sensorNode11.wlan[0].mac macMaxBE 5
 par WSN_EnergyEfficient.sensorNode11.wlan[0].mac radioModule "\"^.radio\""
 scalar WSN_EnergyEfficient.sensorNode11.wlan[0].mac nbTxFrames 17
-scalar WSN_EnergyEfficient.sensorNode11.wlan[0].mac nbRxFrames 174
+scalar WSN_EnergyEfficient.sensorNode11.wlan[0].mac nbRxFrames 218
 scalar WSN_EnergyEfficient.sensorNode11.wlan[0].mac nbDroppedFrames 0
 scalar WSN_EnergyEfficient.sensorNode11.wlan[0].mac nbMissedAcks 0
 scalar WSN_EnergyEfficient.sensorNode11.wlan[0].mac nbRecvdAcks 15
@@ -15811,13 +15820,13 @@ attr unit Hz
 par WSN_EnergyEfficient.sensorNode11.wlan[0].radio signalAnalogRepresentation "\"scalar\""
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.sensorNode11.wlan[0].radio minSnir:histogram
-field count 405
-field mean 777.42484591983
-field stddev 263.22515681067
-field min 3.4368697025794
-field max 1246.4579101827
-field sum 314857.06259753
-field sqrsum 272769846.58057
+field count 449
+field mean 727.71521706616
+field stddev 275.58211390118
+field min 3.1273986193664
+field max 1196.8503277518
+field sum 326744.13246271
+field sqrsum 271800261.9532
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
@@ -15838,41 +15847,41 @@ bin	240	0
 bin	260	0
 bin	280	0
 bin	300	0
-bin	320	0
-bin	340	39
+bin	320	83
+bin	340	0
 bin	360	0
 bin	380	0
 bin	400	0
-bin	420	41
+bin	420	0
 bin	440	0
-bin	460	0
+bin	460	67
 bin	480	0
 bin	500	0
-bin	520	26
+bin	520	0
 bin	540	0
 bin	560	0
 bin	580	0
 bin	600	0
 bin	620	0
 bin	640	0
-bin	660	39
+bin	660	0
 bin	680	0
 bin	700	0
 bin	720	0
 bin	740	0
-bin	760	0
+bin	760	39
 bin	780	0
 bin	800	0
 bin	820	0
-bin	840	0
+bin	840	174
 bin	860	0
-bin	880	217
+bin	880	0
 bin	900	0
 bin	920	0
 bin	940	0
 bin	960	0
 bin	980	0
-bin	1000	0
+bin	1000	43
 bin	1020	0
 bin	1040	0
 bin	1060	0
@@ -15881,10 +15890,10 @@ bin	1100	0
 bin	1120	0
 bin	1140	0
 bin	1160	0
-bin	1180	0
+bin	1180	39
 bin	1200	0
 bin	1220	0
-bin	1240	39
+bin	1240	0
 bin	1260	0
 bin	1280	0
 bin	1300	0
@@ -15894,17 +15903,14 @@ bin	1360	0
 bin	1380	0
 bin	1400	0
 bin	1420	0
-bin	1440	0
-bin	1460	0
-bin	1480	0
 statistic WSN_EnergyEfficient.sensorNode11.wlan[0].radio packetErrorRate:histogram
-field count 405
-field mean 3.8851775020759e-14
-field stddev 3.8948423616543e-13
+field count 449
+field mean 7.6853346750159e-13
+field stddev 8.1151575898984e-12
 field min 0
-field max 3.9337422208519e-12
-field sum 1.5734968883407e-11
-field sqrsum 6.189731144045e-23
+field max 8.6267881727053e-11
+field sum 3.4507152690821e-10
+field sqrsum 2.9768589670692e-20
 attr recordingmode histogram
 attr source packetErrorRate(packetSentToUpper)
 attr title "Packet error rate"
@@ -15934,7 +15940,7 @@ bin	-0.08	0
 bin	-0.06	0
 bin	-0.04	0
 bin	-0.02	0
-bin	0	405
+bin	0	449
 bin	0.02	0
 bin	0.04	0
 bin	0.06	0
@@ -15961,13 +15967,13 @@ bin	0.46	0
 bin	0.48	0
 bin	0.5	0
 statistic WSN_EnergyEfficient.sensorNode11.wlan[0].radio bitErrorRate:histogram
-field count 405
-field mean 4.6828285015619e-17
-field stddev 4.6944776166598e-16
+field count 449
+field mean 9.3259869715646e-16
+field stddev 9.8475677580599e-15
 field min 0
-field max 4.7413638578314e-15
-field sum 1.8965455431326e-14
-field sqrsum 8.9922124929401e-29
+field max 1.0468420375581e-13
+field sum 4.1873681502325e-13
+field sqrsum 4.3835130063954e-26
 attr recordingmode histogram
 attr source bitErrorRate(packetSentToUpper)
 attr title "Bit error rate"
@@ -15997,7 +16003,7 @@ bin	-0.08	0
 bin	-0.06	0
 bin	-0.04	0
 bin	-0.02	0
-bin	0	405
+bin	0	449
 bin	0.02	0
 bin	0.04	0
 bin	0.06	0
@@ -16042,7 +16048,7 @@ attr interpolationmode sample-hold
 attr recordingmode count
 attr source transmissionStateChanged
 attr title "Radio transmission state, count"
-scalar WSN_EnergyEfficient.sensorNode11.wlan[0].radio receptionState:count 966
+scalar WSN_EnergyEfficient.sensorNode11.wlan[0].radio receptionState:count 1054
 attr interpolationmode sample-hold
 attr recordingmode count
 attr source receptionStateChanged
@@ -16371,12 +16377,12 @@ attr recordingmode last
 attr title "pings lost, last"
 statistic WSN_EnergyEfficient.sensorNode11.app[0] rtt:histogram
 field count 10
-field mean 0.0114764567432
-field stddev 0.0025024219840879
-field min 0.008033047286
-field max 0.015810094572
-field sum 0.114764567432
-field sqrsum 0.0013734496358634
+field mean 0.0114764938784
+field stddev 0.0025024338933343
+field min 0.008033078232
+field max 0.015810156464
+field sum 0.114764938784
+field sqrsum 0.0013734586959241
 attr interpolationmode none
 attr recordingmode histogram
 attr title "ping round-trip time"
@@ -17056,17 +17062,16 @@ par WSN_EnergyEfficient.sensorNode12.wlan[0].radio signalAnalogRepresentation "\
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.sensorNode12.wlan[0].radio minSnir:histogram
 field count 229
-field mean 863.97402512006
-field stddev 378.71977218339
+field mean 857.69184219213
+field stddev 372.65975465093
 field min 344.48798616519
-field max 1246.4579101827
-field sum 197850.05175249
-field sqrsum 203639041.39494
+field max 1219.6028824726
+field sum 196411.431862
+field sqrsum 200124049.56523
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
 bin	-inf	0
-bin	100	0
 bin	120	0
 bin	140	0
 bin	160	0
@@ -17120,10 +17125,10 @@ bin	1100	0
 bin	1120	0
 bin	1140	0
 bin	1160	0
-bin	1180	39
+bin	1180	68
 bin	1200	48
 bin	1220	0
-bin	1240	29
+bin	1240	0
 bin	1260	0
 bin	1280	0
 bin	1300	0
@@ -17134,8 +17139,6 @@ bin	1380	0
 bin	1400	0
 bin	1420	0
 bin	1440	0
-bin	1460	0
-bin	1480	0
 statistic WSN_EnergyEfficient.sensorNode12.wlan[0].radio packetErrorRate:histogram
 field count 229
 field mean 0
@@ -18248,16 +18251,18 @@ par WSN_EnergyEfficient.sensorNode13.wlan[0].radio signalAnalogRepresentation "\
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.sensorNode13.wlan[0].radio minSnir:histogram
 field count 118
-field mean 929.60345449513
-field stddev 319.27421035621
-field min 353.96374717917
+field mean 925.83212784573
+field stddev 326.1557542239
+field min 333.7357224233
 field max 1190.6693803386
-field sum 109693.20763042
-field sqrsum 113897699.25153
+field sum 109248.1910858
+field sqrsum 113591661.60982
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
 bin	-inf	0
+bin	100	0
+bin	120	0
 bin	140	0
 bin	160	0
 bin	180	0
@@ -18267,8 +18272,8 @@ bin	240	0
 bin	260	0
 bin	280	0
 bin	300	0
-bin	320	0
-bin	340	22
+bin	320	22
+bin	340	0
 bin	360	0
 bin	380	0
 bin	400	0
@@ -18322,6 +18327,7 @@ bin	1340	0
 bin	1360	0
 bin	1380	0
 bin	1400	0
+bin	1420	0
 statistic WSN_EnergyEfficient.sensorNode13.wlan[0].radio packetErrorRate:histogram
 field count 118
 field mean 0
@@ -19434,31 +19440,26 @@ par WSN_EnergyEfficient.sensorNode14.wlan[0].radio signalAnalogRepresentation "\
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.sensorNode14.wlan[0].radio minSnir:histogram
 field count 138
-field mean 698.65589629107
-field stddev 134.56983546014
-field min 435.54160161977
+field mean 705.59879959014
+field stddev 121.0301208833
+field min 473.86642783064
 field max 839.08382406223
-field sum 96414.513688167
-field sqrsum 69841507.040634
+field sum 97372.634343439
+field sqrsum 70712829.657721
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
 bin	-inf	0
-bin	330	0
-bin	340	0
-bin	350	0
-bin	360	0
-bin	370	0
 bin	380	0
 bin	390	0
 bin	400	0
 bin	410	0
 bin	420	0
-bin	430	25
+bin	430	0
 bin	440	0
 bin	450	0
 bin	460	0
-bin	470	0
+bin	470	25
 bin	480	0
 bin	490	0
 bin	500	0
@@ -20707,12 +20708,12 @@ par WSN_EnergyEfficient.accessPoint0.wlan[0].radio signalAnalogRepresentation "\
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.accessPoint0.wlan[0].radio minSnir:histogram
 field count 191
-field mean 825.40240201283
-field stddev 217.32971420324
+field mean 817.68682070647
+field stddev 215.49577069297
 field min 0.44675829501156
 field max 1034.1721853618
-field sum 157651.85878445
-field sqrsum 139100341.81085
+field sum 156178.18275494
+field sqrsum 136528142.88604
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
@@ -20759,9 +20760,9 @@ bin	760	0
 bin	780	37
 bin	800	0
 bin	820	0
-bin	840	0
+bin	840	29
 bin	860	0
-bin	880	29
+bin	880	0
 bin	900	0
 bin	920	0
 bin	940	0
@@ -21261,12 +21262,12 @@ attr source packetReceived
 attr title "packets received, sum(packetBytes)"
 statistic WSN_EnergyEfficient.accessPoint0.app[0] endToEndDelay:histogram
 field count 41
-field mean 0.004133305164439
-field stddev 0.0022091391814946
+field mean 0.0041333070513902
+field stddev 0.0022091387850855
 field min 0.002720487985
 field max 0.01638678526
-field sum 0.169465511742
-field sqrsum 0.0008956645118061
+field sum 0.169465589107
+field sqrsum 0.00089566508129472
 attr interpolationmode none
 attr recordingmode histogram
 attr source dataAge(packetReceived)
@@ -21817,12 +21818,12 @@ par WSN_EnergyEfficient.accessPoint1.wlan[0].radio signalAnalogRepresentation "\
 attr enum scalar,dimensional
 statistic WSN_EnergyEfficient.accessPoint1.wlan[0].radio minSnir:histogram
 field count 428
-field mean 610.40024951834
-field stddev 307.53269104823
+field mean 602.23019625645
+field stddev 302.88431995705
 field min 6.7431763721004
 field max 1157.2995090778
-field sum 261251.30679385
-field sqrsum 199851966.89301
+field sum 257754.52399776
+field sqrsum 194400072.68794
 attr recordingmode histogram
 attr source minimumSnir(packetSentToUpper)
 attr title "Min SNIR"
@@ -21862,13 +21863,13 @@ bin	620	0
 bin	640	0
 bin	660	0
 bin	680	0
-bin	700	0
+bin	700	29
 bin	720	0
 bin	740	0
 bin	760	0
 bin	780	0
 bin	800	0
-bin	820	29
+bin	820	0
 bin	840	26
 bin	860	0
 bin	880	0
