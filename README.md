@@ -14,7 +14,7 @@
 
 </div>
 
-## �� Project Overview
+## 📊📊 Project Overview
 
 A comprehensive comparative analysis of energy efficiency in Wireless Sensor Networks, focusing on IEEE 802.15.4 and LEACH protocols. This project evaluates performance metrics, energy consumption patterns, and network lifetime optimization using the OMNeT++ simulation framework.
 
