@@ -298,6 +298,33 @@ Energy Breakdown:
 
 ---
 
+## 🔮 Future Work
+
+### Key Research Directions
+1. **Energy Enhancement**
+   - Hybrid energy harvesting
+   - Smart power allocation
+   - Green energy integration
+
+2. **Network Intelligence**
+   - ML-based cluster optimization
+   - Predictive power management
+   - Smart routing algorithms
+
+3. **Security & Scaling**
+   - Lightweight encryption
+   - Attack detection
+   - Large network support
+
+### Implementation Roadmap
+| Phase | Focus | Timeline |
+|-------|-------|----------|
+| 1 | Enhanced Clustering & Power Management | Short-term |
+| 2 | ML/AI Integration | Mid-term |
+| 3 | Security & Large-scale Support | Long-term |
+
+---
+
 ## 📚 Documentation
 
 ### Project Structure
