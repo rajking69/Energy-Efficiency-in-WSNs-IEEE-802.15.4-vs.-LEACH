@@ -12,7 +12,7 @@
 
 # International Islamic University Chittagong
 ## Department of Computer Science & Engineering
-### Course Code: CSE-3200 | Project Work-II
+### Course Code: CSE- 3634
 
 </div>
 
