@@ -1,199 +1,227 @@
-# Energy-Efficiency-in-WSNs-IEEE-802.15.4-vs.-LEACH
+# WSN Energy Efficient
+> Advanced Implementation of LEACH Protocol for Energy-Efficient Wireless Sensor Networks
 
-## Project Overview
+[![OMNeT++](https://img.shields.io/badge/OMNeT++-6.1.0-blue.svg)](https://omnetpp.org/)
+[![INET](https://img.shields.io/badge/INET-4.5.0-green.svg)](https://inet.omnetpp.org/)
+[![License](https://img.shields.io/badge/license-Academic-yellow.svg)](LICENSE)
 
-This project implements an energy-efficient Wireless Sensor Network (WSN) using the Low Energy Adaptive Clustering Hierarchy (LEACH) protocol. The implementation is built using the OMNeT++ simulation framework with the INET library, focusing on IEEE 802.15.4 standard compliance and energy efficiency optimization.
+## Project Team
+| Role | Name | ID |
+|------|------|------|
+| **Team Leader** | Sheikh Mohammad Rajking | C221011 |
+| Member 1 | Adrishikar Barua | C221022 |
+| Member 2 | Abu Tanvir Hasan Tanmoy | C221001 |
 
+## Table of Contents
+- [Overview](#overview)
+- [Technical Architecture](#technical-architecture)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Performance Analysis](#performance-analysis)
+- [Documentation](#documentation)
+- [Future Work](#future-work)
 
-## Technical Specifications
+## Overview
+This project implements an advanced energy-efficient Wireless Sensor Network (WSN) using the LEACH (Low Energy Adaptive Clustering Hierarchy) protocol. Built on OMNeT++ with INET framework integration, it focuses on optimizing network lifetime through intelligent clustering and energy management.
 
+### Key Objectives
+- Minimize network energy consumption
+- Extend WSN lifetime through efficient clustering
+- Optimize data transmission paths
+- Provide real-time network visualization
+- Enable comprehensive performance analysis
 
-### Network Architecture
+## Technical Architecture
 
-- **Network Type**: Hierarchical clustering-based WSN
+### Network Components
+```
+WSN Architecture
+├── Base Station (Gateway)
+├── Sensor Nodes
+│   ├── Cluster Heads (Dynamic)
+│   └── Member Nodes
+└── Network Parameters
+    ├── Frequency: 2.4 GHz
+    ├── Bandwidth: 2 MHz
+    └── TX Power: 2.24 mW
+```
 
-- **Node Configuration**: 15 sensor nodes and 2 access points
-
-- **Protocol Stack**: IEEE 802.15.4 narrowband interface
-
-- **Routing Protocol**: LEACH with AODV support
-
-- **Network Topology**: Static deployment with configurable cluster head probability
-
-
-### Radio Parameters
-
-- **Frequency**: 2.4 GHz
-
-- **Bandwidth**: 2 MHz
-
-- **Transmission Power**: 2.24 mW
-
-- **Receiver Sensitivity**: -85 dBm
-
-- **SNIR Threshold**: 4 dB
-
+### Protocol Stack
+- **Physical Layer**: IEEE 802.15.4
+- **MAC Layer**: TDMA + CSMA/CA
+- **Network Layer**: LEACH Protocol
+- **Application Layer**: Sensor Data Collection
 
 ### Energy Model
-
-- **Storage Type**: SimpleEpEnergyStorage
-
-- **Initial Capacity**: 0.15J
-
-- **Shutdown Threshold**: 0.06J
-
-- **Restart Threshold**: 0.09J
-
-- **Power Generation**: 3mW (with alternating generation pattern)
-
-
-### MAC Layer Configuration
-
-- **Protocol**: IEEE 802.15.4 MAC
-
-- **ACK Support**: Enabled
-
-- **Maximum Frame Retries**: 3
-
-- **Backoff Parameters**: 
-
-  - Maximum BE: 5
-
-  - Minimum BE: 3
-
-  - RX Setup Time: 1.92ms
-
-
-## Implementation Features
-
-
-### LEACH Protocol Implementation
-
-- Cluster head selection with 5% probability
-
-- Dynamic cluster formation
-
-- Energy-aware role switching
-
-- Direct communication with base station for cluster heads
-
-
-### Energy Management
-
-- Comprehensive energy monitoring and visualization
-
-- State-based energy consumption model
-
-- Alternating energy generation capability
-
-- Node shutdown/restart based on energy thresholds
-
-
-### Network Communication
-
-- Dual application layer:
-
-  1. PingApp for network testing
-
-  2. UdpBasicApp for data transmission
-
-- Configurable message sizes and intervals
-
-- Free space path loss model
-
-- Carrier frequency: 2.4 GHz
-
-- Data rate: 250 kbps
-
-
-## Performance Metrics
-
-The implementation tracks several key performance indicators:
-
-- Residual energy levels
-
-- Packets delivered to base station
-
-- End-to-end delay
-
-- Round numbers in LEACH operation
-
-- Cluster head status
-
-- Packets delivered to cluster heads
-
-
-## Simulation Parameters
-
-- **Simulation Time**: 200 seconds
-
-- **Network Size**: 15 sensor nodes, 2 access points
-
-- **Traffic Pattern**: 
-
-  - Ping intervals: exponential(20s)
-
-  - UDP data intervals: exponential(25s)
-
-  - Packet sizes: 64B (ping), 32B (UDP)
-
-
-## Visualization Features
-
-- Energy storage visualization
-
-- Data link visualization
-
-- Network route visualization
-
-- Physical link display
-
-- Mobility trails (for future mobile scenarios)
-
-
-## Configuration Options
-
-The project includes multiple configuration profiles:
-
-1. **Common**: Base configuration with energy and network parameters
-
-2. **IEEE802154**: Standard implementation with AODV routing
-
-3. **LEACH**: LEACH protocol implementation with clustering
-
+```ini
+Energy Configuration:
+- Initial: 0.15J
+- Threshold: 0.06J
+- Generation: 3mW
+```
+
+## Features
+
+### 1. LEACH Implementation
+- Dynamic cluster head rotation
+- Energy-aware node selection
+- Adaptive clustering mechanism
+- Optimized TDMA scheduling
+
+### 2. Network Visualization
+- Real-time energy monitoring
+- Dynamic cluster formation display
+- Node status tracking
+- Data flow visualization
+- Professional minimalist legend
+
+### 3. Sensor Capabilities
+| Sensor Type | Range | Resolution |
+|-------------|-------|------------|
+| Temperature | -40°C to 125°C | 0.1°C |
+| Humidity | 0-100% RH | 0.1% |
+| Pressure | 300-1100 hPa | 0.1 hPa |
+
+### 4. Energy Management
+- Real-time consumption tracking
+- Dynamic power adjustment
+- State-based energy modeling
+- Threshold-based node control
+
+## Requirements
+- OMNeT++ 6.1.0
+- INET Framework 4.5.0
+- C++ Compiler (C++14 or later)
+- Minimum 8GB RAM
+- 64-bit OS (Windows/Linux)
+
+## Installation
+
+1. **Environment Setup**
+```bash
+# Clone repository
+git clone https://github.com/your-repo/WSN_EnergyEfficient.git
+
+# Navigate to project
+cd WSN_EnergyEfficient
+
+# Build project
+make clean
+make makefiles
+make
+```
+
+2. **IDE Configuration**
+```bash
+# Import project in OMNeT++ IDE
+File -> Import -> Existing Projects into Workspace
+Select WSN_EnergyEfficient directory
+```
+
+## Configuration
+
+### Network Parameters
+```ini
+# omnetpp.ini
+[General]
+network = WSN_EnergyEfficient
+sim-time-limit = 200s
+
+# Node Configuration
+*.sensorNode*.energyStorage.nominalCapacity = 0.15J
+*.sensorNode*.energyStorage.initialCapacity = 0.15J
+
+# LEACH Parameters
+*.sensorNode*.clusterHeadProbability = 0.05
+```
+
+### Radio Configuration
+```ini
+# IEEE 802.15.4 Settings
+**.wlan[*].typename = "Ieee802154NarrowbandInterface"
+**.wlan[*].radio.transmitter.power = 2.24mW
+**.wlan[*].radio.receiver.sensitivity = -85dBm
+```
+
+## Usage
+
+### Running Simulations
+1. Open OMNeT++ IDE
+2. Select WSN_EnergyEfficient project
+3. Choose configuration:
+   - General (IEEE 802.15.4)
+   - LEACH
+4. Run/Debug simulation
+
+### Analysis Tools
+- Energy consumption graphs
+- Network lifetime analysis
+- Packet delivery statistics
+- Cluster formation metrics
+
+## Performance Analysis
+
+### Metrics
+- Network Lifetime
+- Energy Consumption
+- Packet Delivery Ratio
+- Clustering Efficiency
+- End-to-End Delay
+
+### Visualization Features
+- Energy level indicators
+- Cluster boundaries
+- Node status
+- Data paths
+- Sensor readings
+
+## Documentation
+
+### Project Structure
+```
+WSN_EnergyEfficient/
+├── src/
+│   ├── LeachNode.cc
+│   ├── LeachNode.h
+│   └── WSN.ned
+├── simulations/
+│   └── omnetpp.ini
+├── results/
+└── doc/
+```
+
+### Key Files
+- `LeachNode.h/cc`: LEACH protocol implementation
+- `WSN.ned`: Network definition
+- `omnetpp.ini`: Simulation parameters
 
 ## Future Work
+1. Multi-hop clustering implementation
+2. Machine learning integration
+3. Mobile node support
+4. Advanced energy harvesting
+5. Cross-layer optimization
 
-Potential areas for enhancement:
+## Contributing
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md).
 
-1. Mobile node support
+## License
+This project is licensed under the Academic License - see the [LICENSE](LICENSE) file for details.
 
-2. Advanced energy harvesting models
+## Acknowledgments
+- OMNeT++ Development Team
+- INET Framework Contributors
+- Department of Computer Science & Engineering
+- [Your University Name]
 
-3. Multi-hop clustering
+## Contact
+For technical queries:
+- Sheikh Mohammad Rajking - C221011@ugrad.iiuc.ac.bd
+- Adrishikar Barua - C221022@ugrad.iiuc.ac.bd
+- Abu Tanvir Hasan Tanmoy - C221001@ugrad.iiuc.ac.bd
 
-4. Dynamic transmission power adjustment
-
-5. Machine learning-based cluster head selection
-
-
-## Technical Requirements
-
-- OMNeT++ 6.1
-
-- INET Framework
-
-- C++ Compiler
-
-- IEEE 802.15.4 Module Support
-
-
-## References
-
-1. IEEE 802.15.4 Standard
-
-2. LEACH Protocol Specification
-
-3. OMNeT++ Documentation
-
-4. INET Framework Documentation 
+---
+*Last Updated: March 2024* 
