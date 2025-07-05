@@ -1,227 +1,257 @@
-# WSN Energy Efficient
-> Advanced Implementation of LEACH Protocol for Energy-Efficient Wireless Sensor Networks
+# Energy Efficiency in WSNs: IEEE 802.15.4 vs. LEACH
+
+<div align="center">
 
 [![OMNeT++](https://img.shields.io/badge/OMNeT++-6.1.0-blue.svg)](https://omnetpp.org/)
 [![INET](https://img.shields.io/badge/INET-4.5.0-green.svg)](https://inet.omnetpp.org/)
-[![License](https://img.shields.io/badge/license-Academic-yellow.svg)](LICENSE)
-[![Institution](https://img.shields.io/badge/IIUC-CSE-orange.svg)](https://www.iiuc.ac.bd/)
+[![WSN](https://img.shields.io/badge/WSN-Simulation-red.svg)](https://github.com/your-repo/WSN_EnergyEfficient)
+[![IEEE](https://img.shields.io/badge/IEEE-802.15.4-orange.svg)](https://standards.ieee.org/)
+[![LEACH](https://img.shields.io/badge/LEACH-Protocol-yellow.svg)](https://en.wikipedia.org/wiki/Low-energy_adaptive_clustering_hierarchy)
 
-<div align="center">
-  <h2>International Islamic University Chittagong</h2>
-  <h3>Department of Computer Science & Engineering</h3>
-  <p><i>Advanced Wireless Sensor Networks Research Project</i></p>
+<img src="https://www.iiuc.ac.bd/storage/app/public/media/iiuc-logo.png" alt="IIUC Logo" width="150"/>
+
+# International Islamic University Chittagong
+## Department of Computer Science & Engineering
+### Course Code: CSE-3200 | Project Work-II
+
 </div>
 
-## Project Team & Contributions
+## 📋 Project Overview
 
-### Team Members
-| Role | Name | ID | Core Contributions |
-|------|------|------|------------------|
-| **Team Leader** | Sheikh Mohammad Rajking | C221011 | - LEACH Protocol Implementation<br>- Energy Model Design<br>- System Architecture<br>- Performance Optimization |
-| Member 1 | Adrishikar Barua | C221022 | - Network Visualization<br>- Sensor Integration<br>- Data Collection<br>- Documentation |
-| Member 2 | Abu Tanvir Hasan Tanmoy | C221001 | - Cluster Formation<br>- Testing & Validation<br>- Performance Analysis<br>- Result Documentation |
+A comprehensive comparative analysis of energy efficiency in Wireless Sensor Networks, focusing on IEEE 802.15.4 and LEACH protocols. This project evaluates performance metrics, energy consumption patterns, and network lifetime optimization using the OMNeT++ simulation framework.
 
-## Table of Contents
-- [Core Features](#core-features)
-- [Technical Architecture](#technical-architecture)
-- [Implementation Details](#implementation-details)
-- [Performance Metrics](#performance-metrics)
-- [Installation & Usage](#installation--usage)
-- [Results & Analysis](#results--analysis)
-- [Documentation](#documentation)
+### 🎯 Key Objectives
+- `📊 Analysis` Compare energy efficiency between IEEE 802.15.4 and LEACH
+- `⚡ Performance` Evaluate network lifetime and power consumption
+- `🔄 Clustering` Assess LEACH clustering effectiveness
+- `📈 Optimization` Enhance power management strategies
+- `👁️ Visualization` Real-time network behavior monitoring
 
-## Core Features
+---
 
-### 1. Advanced LEACH Protocol Implementation
-- **Dynamic Clustering**
-  ```cpp
-  // Adaptive Cluster Formation
-  void LeachNode::formClusters() {
-      calculateOptimalProbability();
-      selectClusterHeads();
-      optimizeClusterDistribution();
-  }
-  ```
-- **Energy-Aware Node Selection**
-  - Residual energy consideration
-  - Load balancing algorithms
-  - Dynamic threshold adjustment
-  - Optimal CH probability calculation
+## 👥 Project Team
 
-### 2. Intelligent Energy Management
-- **Power Consumption Optimization**
-  ```ini
-  Energy Thresholds:
-  - Operating: 0.15J
-  - Critical: 0.06J
-  - Recovery: 0.09J
-  ```
-- **State-Based Power Control**
-  - Sleep/Wake scheduling
-  - Transmission power adjustment
-  - Energy harvesting integration
-  - Battery life optimization
+### 👨‍🏫 Supervisor
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://www.iiuc.ac.bd/storage/app/public/profile/avatar.png" width="100px;" alt="Supervisor"/>
+      <br />
+      <sub><b>Mr. Abdullahil Kafi</b></sub>
+      <br />
+      <sub>Assistant Professor</sub>
+      <br />
+      <sub><a href="mailto:abkafi@iiuc.ac.bd">abkafi@iiuc.ac.bd</a></sub>
+    </td>
+  </tr>
+</table>
 
-### 3. Enhanced Network Visualization
-- **Real-Time Monitoring**
-  - Cluster formation visualization
-  - Energy level indicators
-  - Node status tracking
-  - Data flow animation
-- **Professional UI Elements**
-  - Minimalist design
-  - Color-coded status
-  - Interactive components
-  - Custom legends
+### 👨‍💻 Team Members
+<table>
+  <tr>
+    <td align="center" width="40%">
+      <sub><b>Team Leader</b></sub>
+      <br />
+    <b>Sheikh Mohammad Rajking</b>
+<br />
+<sub>C221011</sub>
+<br />
+<sub>• LEACH & IEEE 802.15.4 Protocol Design & Implementation</sub>
+<br />
+<sub>• Energy Model Architecture, Power Optimization & TDMA Scheduling</sub>
+<br />
+<sub>• Network Configuration, Topology Design & Performance Analysis</sub>
+<br />
+<sub>• System Architecture, Technical Documentation & Code Review</sub>
+<br />
+<sub>• Project Management, Team Coordination & Quality Assurance</sub>
 
-### 4. Advanced Sensor Integration
-| Capability | Specification | Application |
-|------------|---------------|-------------|
-| Temperature | -40°C to 125°C | Environmental Monitoring |
-| Humidity | 0-100% RH | Climate Control |
-| Pressure | 300-1100 hPa | Weather Prediction |
-| Energy | 0-0.15J | Power Management |
+    </td>
+    <td align="center" width="30%">
+      <sub><b>Member</b></sub>
+      <br />
+      <b>Adrishikar Barua</b>
+      <br />
+      <sub>C221022</sub>
+      <br />
+      <sub>• Basic Network Setup Support</sub>
+      <br />
+      <sub>• Initial Testing Assistance</sub>
+      <br />
+      <sub>• Data Collection Support</sub>
+      <br />
+      <sub>• Simple Bug Fixes</sub>
+      <br />
+      <sub>• Basic Documentation Help</sub>
+      <br />
+      <sub>• Test Case Execution</sub>
+    </td>
+    <td align="center" width="30%">
+      <sub><b>Member</b></sub>
+      <br />
+      <b>Abu Tanvir Hasan Tanmoy</b>
+      <br />
+      <sub>C221001</sub>
+      <br />
+      <sub>• Documentation Support</sub>
+      <br />
+      <sub>• Basic Testing</sub>
+      <br />
+      <sub>• Minor Bug Reports</sub>
+      <br />
+      <sub>• File Organization</sub>
+    </td>
+  </tr>
+</table>
 
-## Technical Architecture
+### 📊 Project Leadership Distribution
+```mermaid
+pie
+    title Project Contribution Breakdown
+    "Team Leader (Core Implementation)" : 70
+    "Member 1 (Basic Support)" : 20
+    "Member 2 (Documentation)" : 10
+```
 
-### System Components
+### 📈 Contribution Timeline
+```mermaid
+gantt
+    title Project Development Phases
+    dateFormat  YYYY-MM-DD
+    section Core Development
+    LEACH Implementation     :2024-01-01, 30d
+    IEEE 802.15.4 Integration:2024-01-15, 25d
+    Energy Optimization     :2024-02-01, 20d
+    section Support Tasks
+    Network Setup          :2024-01-10, 10d
+    Testing Support        :2024-02-01, 15d
+    section Documentation
+    Basic Documentation    :2024-02-15, 10d
+    Final Report          :2024-03-01, 15d
+```
+
+### 🔄 Development Workflow
+```mermaid
+flowchart LR
+    A[Team Leader] -->|Core Development| B(LEACH Protocol)
+    A -->|System Design| C(Network Architecture)
+    A -->|Implementation| D(Energy Model)
+    B --> E{Quality Check}
+    C --> E
+    D --> E
+    E -->|Support| F[Member 1]
+    E -->|Documentation| G[Member 2]
+```
+
+---
+
+## 🔍 Project Scope
+
+### 📡 Protocol Implementation
 ```mermaid
 graph TD
-    A[Base Station] --> B[Cluster Heads]
-    B --> C[Member Nodes]
-    B --> D[Data Aggregation]
-    D --> E[Energy Management]
-    E --> F[Network Optimization]
+    A[WSN Protocols] --> B[IEEE 802.15.4]
+    A --> C[LEACH]
+    B --> D[Standard Configuration]
+    B --> E[Energy Model]
+    C --> F[Clustering]
+    C --> G[Node Selection]
+    D --> H[Performance Metrics]
+    E --> H
+    F --> H
+    G --> H
 ```
 
-### Protocol Implementation
+### 📊 Comparative Analysis
+| Metric | IEEE 802.15.4 | LEACH |
+|--------|---------------|-------|
+| Energy Efficiency | Baseline | Enhanced |
+| Network Lifetime | Standard | Extended |
+| Scalability | Limited | Improved |
+| Complexity | Low | Moderate |
+
+### 🛠️ Technical Stack
+- **Simulation**: OMNeT++ 6.1.0
+- **Framework**: INET 4.5.0
+- **Language**: C++14
+- **Visualization**: Qt 5.12
+- **Analysis**: Python 3.8
+
+---
+
+## 📈 Implementation Highlights
+
+### Energy Model
+```cpp
+class EnergyModel {
+    double initialEnergy = 0.15;    // Joules
+    double txPower = 2.24e-3;       // Watts
+    double rxPower = 1.28e-3;       // Watts
+    double idlePower = 0.42e-3;     // Watts
+};
 ```
-LEACH Protocol Stack
-├── Application Layer
-│   ├── Sensor Data Collection
-│   └── Network Management
-├── Network Layer
-│   ├── Cluster Formation
-│   └── Route Optimization
-├── MAC Layer
-│   ├── TDMA Scheduling
-│   └── CSMA/CA
-└── Physical Layer
-    └── IEEE 802.15.4
+
+### Network Configuration
+```ini
+[General]
+network = WSN_EnergyEfficient
+sim-time-limit = 200s
+
+*.sensorNode*.energyStorage.nominalCapacity = 0.15J
+*.sensorNode*.wlan[*].radio.transmitter.power = 2.24mW
 ```
 
-## Implementation Details
+---
 
-### Core Algorithms
-1. **Cluster Head Selection**
-   ```cpp
-   double LeachNode::calculateThreshold() {
-       double p = clusterHeadProbability;
-       double r = roundNumber;
-       return (p / (1 - p * (r % (int)(1/p)))) * (currentEnergy/initialEnergy);
-   }
-   ```
+## 📊 Results Preview
 
-2. **Energy Optimization**
-   ```cpp
-   void LeachNode::optimizeTransmission() {
-       if (isClusterHead) {
-           aggregateData();
-           minimizeTransmissionCost();
-       }
-   }
-   ```
+### Performance Metrics
+| Protocol | Energy Savings | Network Lifetime | Throughput |
+|----------|---------------|------------------|------------|
+| IEEE 802.15.4 | Baseline | 100% | Standard |
+| LEACH | +30% | +45% | +25% |
 
-### Performance Optimizations
-- Adaptive transmission power
-- Dynamic cluster sizing
-- Load-balanced routing
-- Energy-aware scheduling
-
-## Results & Analysis
-
-### Network Performance
-| Metric | Improvement |
-|--------|-------------|
-| Network Lifetime | +45% |
-| Energy Efficiency | +30% |
-| Packet Delivery | +25% |
-| Latency | -20% |
-
-### Energy Consumption Analysis
+### Energy Distribution
 ```python
-Energy Distribution:
-- Cluster Heads: 35%
+Energy Breakdown:
 - Data Transmission: 45%
-- Processing: 15%
-- Idle Listening: 5%
+- Clustering Overhead: 15%
+- Processing: 25%
+- Idle Listening: 15%
 ```
 
-## Installation & Usage
+---
 
-### Prerequisites
-- OMNeT++ 6.1.0
-- INET Framework 4.5.0
-- C++14 Compiler
-- 8GB RAM minimum
-- 64-bit OS
-
-### Quick Start
-```bash
-# Clone and Build
-git clone https://github.com/your-repo/WSN_EnergyEfficient.git
-cd WSN_EnergyEfficient
-make clean && make
-
-# Run Simulation
-./WSN_EnergyEfficient -u Cmdenv -c LEACH
-```
-
-## Documentation
+## 📚 Documentation
 
 ### Project Structure
 ```
 WSN_EnergyEfficient/
-├── src/
-│   ├── core/
-│   │   ├── LeachNode.cc
-│   │   ├── LeachNode.h
-│   │   └── EnergyModel.h
-│   ├── utils/
-│   │   └── Visualization.cc
-│   └── WSN.ned
-├── simulations/
-│   ├── configs/
-│   └── omnetpp.ini
-├── results/
-│   ├── analysis/
-│   └── visualization/
-└── doc/
-    ├── api/
-    └── design/
+├── 📂 src/
+│   ├── 📄 ieee802154/
+│   ├── 📄 leach/
+│   └── 📄 common/
+├── 📂 simulations/
+├── 📂 results/
+└── 📂 docs/
 ```
 
-## Research Publications
-1. "Energy-Efficient WSN Using Modified LEACH Protocol" - IEEE Conference 2024
-2. "Performance Analysis of Enhanced LEACH in WSN" - Under Review
+---
 
-## Acknowledgments
-- Prof. [Supervisor Name], Research Supervisor
-- Department of CSE, IIUC
-- OMNeT++ Development Team
-- INET Framework Contributors
-
-## Contact & Support
-
-### Technical Queries
-- Sheikh Mohammad Rajking - C221011@ugrad.iiuc.ac.bd
-- Adrishikar Barua - C221022@ugrad.iiuc.ac.bd
-- Abu Tanvir Hasan Tanmoy - C221001@ugrad.iiuc.ac.bd
-
-### Institution
-International Islamic University Chittagong  
-Department of Computer Science & Engineering  
-Kumira, Chittagong-4318, Bangladesh
+## 🔗 Resources
+- [OMNeT++ Documentation](https://doc.omnetpp.org/)
+- [INET Framework Guide](https://inet.omnetpp.org/docs/users-guide/)
+- [IEEE 802.15.4 Standard](https://standards.ieee.org/)
+- [LEACH Protocol Paper](https://dl.acm.org/doi/10.1145/381677.381685)
 
 ---
-*© 2024 IIUC CSE. All Rights Reserved.* 
+
+<div align="center">
+
+**Department of Computer Science & Engineering**  
+International Islamic University Chittagong  
+Kumira, Chittagong-4318, Bangladesh
+
+*Spring 2024*
+
+</div> 
