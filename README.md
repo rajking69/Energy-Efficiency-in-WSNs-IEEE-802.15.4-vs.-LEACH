@@ -1,6 +1,6 @@
-# Energy Efficiency in WSNs: IEEE 802.15.4 vs. LEACH
-
 <div align="center">
+
+# Energy Efficiency in WSNs: IEEE 802.15.4 vs. LEACH
 
 [![OMNeT++](https://img.shields.io/badge/OMNeT++-6.1.0-blue.svg)](https://omnetpp.org/)
 [![INET](https://img.shields.io/badge/INET-4.5.0-green.svg)](https://inet.omnetpp.org/)
@@ -14,7 +14,7 @@
 
 </div>
 
-## 📋 Project Overview
+## �� Project Overview
 
 A comprehensive comparative analysis of energy efficiency in Wireless Sensor Networks, focusing on IEEE 802.15.4 and LEACH protocols. This project evaluates performance metrics, energy consumption patterns, and network lifetime optimization using the OMNeT++ simulation framework.
 
