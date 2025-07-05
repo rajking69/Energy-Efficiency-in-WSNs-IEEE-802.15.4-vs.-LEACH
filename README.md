@@ -331,12 +331,43 @@ Energy Breakdown:
 ```
 WSN_EnergyEfficient/
 ├── 📂 src/
-│   ├── 📄 ieee802154/
-│   ├── 📄 leach/
-│   └── 📄 common/
+│   ├── 📂 ieee802154/
+│   │   ├── IEEE802154Node.cc
+│   │   ├── IEEE802154Node.h
+│   │   └── IEEE802154Node.ned
+│   ├── 📂 leach/
+│   │   ├── LeachNode.cc          # LEACH protocol implementation
+│   │   ├── LeachNode.h           # Header definitions
+│   │   └── LeachNode.ned         # Network description
+│   └── 📂 common/
+│       ├── EnergyModel.cc        # Energy consumption model
+│       ├── EnergyModel.h         # Energy parameters
+│       └── NetworkUtils.h        # Common utilities
 ├── 📂 simulations/
+│   ├── omnetpp.ini              # Simulation configurations
+│   ├── WSN.ned                  # Network topology
+│   └── Power.anf               # Analysis file
 ├── 📂 results/
-└── 📂 docs/
+│   ├── IEEE802154/             # IEEE 802.15.4 simulation results
+│   │   ├── energy_stats.csv
+│   │   └── network_metrics.csv
+│   └── LEACH/                  # LEACH protocol results
+│       ├── cluster_stats.csv
+│       └── power_consumption.csv
+├── 📂 docs/
+│   ├── 📂 design/
+│   │   ├── architecture.md      # System architecture
+│   │   └── protocols.md         # Protocol specifications
+│   ├── 📂 analysis/
+│   │   ├── metrics.md           # Performance metrics
+│   │   └── results.md           # Result analysis
+│   └── 📂 setup/
+│       ├── installation.md      # Setup instructions
+│       └── configuration.md     # Configuration guide
+├── .gitignore
+├── Makefile                    # Build configuration
+├── README.md                   # Project documentation
+└── LICENSE                     # Project license
 ```
 
 ---
