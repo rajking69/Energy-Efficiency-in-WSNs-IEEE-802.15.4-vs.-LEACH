@@ -1,6 +1,6 @@
 # Energy Efficiency in WSNs: IEEE 802.15.4 vs. LEACH
 
-<div align="center">
+
 
 [![OMNeT++](https://img.shields.io/badge/OMNeT++-6.1.0-blue.svg)](https://omnetpp.org/)
 [![INET](https://img.shields.io/badge/INET-4.5.0-green.svg)](https://inet.omnetpp.org/)
@@ -35,7 +35,6 @@ A comprehensive comparative analysis of energy efficiency in Wireless Sensor Net
 <table>
   <tr>
     <td align="center">
-      <img src="https://www.iiuc.ac.bd/storage/app/public/profile/avatar.png" width="100px;" alt="Supervisor"/>
       <br />
       <sub><b>Mr. Abdullahil Kafi</b></sub>
       <br />
