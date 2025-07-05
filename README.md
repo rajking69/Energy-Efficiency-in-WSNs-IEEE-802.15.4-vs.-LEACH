@@ -30,21 +30,10 @@ A comprehensive comparative analysis of energy efficiency in Wireless Sensor Net
 ## 👥 Project Team
 
 ### 👨‍🏫 Supervisor
-<table>
-  <tr>
-    <td align="center" width="100%">
-      <sub><b>Project Supervisor</b></sub>
-      <br />
-      <b>Mr. Abdullahil Kafi</b>
-      <br />
-      <sub>Assistant Professor</sub>
-      <br />
-      <sub>Department of CSE</sub>
-      <br />
-      <sub><a href="mailto:abkafi@iiuc.ac.bd">abkafi@iiuc.ac.bd</a></sub>
-    </td>
-  </tr>
-</table>
+
+Mr. Abdullahil Kafi  
+Assistant Professor, Department of CSE  
+Email: [abkafi@iiuc.ac.bd](mailto:abkafi@iiuc.ac.bd)
 
 ### 👨‍💻 Team Members
 <table>
