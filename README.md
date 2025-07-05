@@ -1,6 +1,6 @@
 # Energy Efficiency in WSNs: IEEE 802.15.4 vs. LEACH
 
-
+<div align="center">
 
 [![OMNeT++](https://img.shields.io/badge/OMNeT++-6.1.0-blue.svg)](https://omnetpp.org/)
 [![INET](https://img.shields.io/badge/INET-4.5.0-green.svg)](https://inet.omnetpp.org/)
@@ -8,11 +8,9 @@
 [![IEEE](https://img.shields.io/badge/IEEE-802.15.4-orange.svg)](https://standards.ieee.org/)
 [![LEACH](https://img.shields.io/badge/LEACH-Protocol-yellow.svg)](https://en.wikipedia.org/wiki/Low-energy_adaptive_clustering_hierarchy)
 
-
-
 # International Islamic University Chittagong
 ## Department of Computer Science & Engineering
-### Course Code: CSE- 3634
+### Course Code: CSE-3634
 
 </div>
 
@@ -34,10 +32,14 @@ A comprehensive comparative analysis of energy efficiency in Wireless Sensor Net
 ### 👨‍🏫 Supervisor
 <table>
   <tr>
+    <td align="center" width="100%">
+      <sub><b>Project Supervisor</b></sub>
       <br />
-      <sub><b>Mr. Abdullahil Kafi</b></sub>
+      <b>Mr. Abdullahil Kafi</b>
       <br />
       <sub>Assistant Professor</sub>
+      <br />
+      <sub>Department of CSE</sub>
       <br />
       <sub><a href="mailto:abkafi@iiuc.ac.bd">abkafi@iiuc.ac.bd</a></sub>
     </td>
