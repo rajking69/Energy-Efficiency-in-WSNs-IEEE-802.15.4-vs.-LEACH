@@ -52,20 +52,19 @@ A comprehensive comparative analysis of energy efficiency in Wireless Sensor Net
     <td align="center" width="40%">
       <sub><b>Team Leader</b></sub>
       <br />
-    <b>Sheikh Mohammad Rajking</b>
-<br />
-<sub>C221011</sub>
-<br />
-<sub>• LEACH & IEEE 802.15.4 Protocol Design & Implementation</sub>
-<br />
-<sub>• Energy Model Architecture, Power Optimization & TDMA Scheduling</sub>
-<br />
-<sub>• Network Configuration, Topology Design & Performance Analysis</sub>
-<br />
-<sub>• System Architecture, Technical Documentation & Code Review</sub>
-<br />
-<sub>• Project Management, Team Coordination & Quality Assurance</sub>
-
+      <b>Sheikh Mohammad Rajking</b>
+      <br />
+      <sub>C221011</sub>
+      <br />
+      <sub>• LEACH & IEEE 802.15.4 Protocol Design & Implementation</sub>
+      <br />
+      <sub>• Energy Model Architecture, Power Optimization & TDMA Scheduling</sub>
+      <br />
+      <sub>• Network Configuration, Topology Design & Performance Analysis</sub>
+      <br />
+      <sub>• System Architecture, Technical Documentation & Code Review</sub>
+      <br />
+      <sub>• Project Management, Team Coordination & Quality Assurance</sub>
     </td>
     <td align="center" width="30%">
       <sub><b>Member</b></sub>
@@ -74,17 +73,17 @@ A comprehensive comparative analysis of energy efficiency in Wireless Sensor Net
       <br />
       <sub>C221022</sub>
       <br />
-      <sub>• Basic Network Setup Support</sub>
+      <sub>• Basic Network Setup & Initial Testing Support</sub>
       <br />
-      <sub>• Initial Testing Assistance</sub>
+      <sub>• Data Collection & Test Case Execution</sub>
       <br />
-      <sub>• Data Collection Support</sub>
+      <sub>• Simple Bug Fixes & Debugging Assistance</sub>
       <br />
-      <sub>• Simple Bug Fixes</sub>
+      <sub>• Basic Documentation & Report Preparation</sub>
       <br />
-      <sub>• Basic Documentation Help</sub>
+      <sub>• Result Validation & Metric Tracking</sub>
       <br />
-      <sub>• Test Case Execution</sub>
+      <sub>• Support in Simulation Runs & Analysis</sub>
     </td>
     <td align="center" width="30%">
       <sub><b>Member</b></sub>
@@ -93,13 +92,15 @@ A comprehensive comparative analysis of energy efficiency in Wireless Sensor Net
       <br />
       <sub>C221001</sub>
       <br />
-      <sub>• Documentation Support</sub>
+      <sub>• Documentation Support & Report Formattin</sub>
       <br />
-      <sub>• Basic Testing</sub>
+      <sub>• Basic Testing & Test Case Execution</sub>
       <br />
-      <sub>• Minor Bug Reports</sub>
+      <sub>• Minor Bug Reports & Issue Tracking</sub>
       <br />
-      <sub>• File Organization</sub>
+      <sub>• File Organization & Repository Maintenance</sub>
+      <br />
+      <sub>• Data Collection & Result Verification</sub>
     </td>
   </tr>
 </table>
