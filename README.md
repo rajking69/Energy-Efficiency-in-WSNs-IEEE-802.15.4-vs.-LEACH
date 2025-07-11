@@ -507,6 +507,43 @@ Choose what interests you and explore!
 
 ---
 
+## 📚 References
+
+1. **LEACH Protocol**
+   - W. R. Heinzelman, A. Chandrakasan, and H. Balakrishnan, "An application-specific protocol architecture for wireless microsensor networks," Computer Networks, vol. 37, no. 3--4, pp. 629--660, 2001.
+   - [Read Paper](https://www.sciencedirect.com/science/article/abs/pii/S1389128601003024)
+
+2. **IEEE 802.15.4 Standard**
+   - IEEE Computer Society, "IEEE Standard for Low-Rate Wireless Networks," IEEE Std 802.15.4-2020, Sept. 2020.
+   - [Access Standard](https://doi.org/10.1109/IEEESTD.2020.9144691)
+
+3. **OMNeT++ Framework**
+   - A. Varga and R. Hornig, "An overview of the OMNeT++ simulation environment," Proc. 1st Int. Conf. Simulation Tools and Techniques for Communications, Networks and Systems, 2008, pp. 1--10.
+   - [Read Paper](https://doi.org/10.4108/ICST.SIMUTOOLS2008.3027)
+
+4. **WSN Fundamentals**
+   - I. F. Akyildiz, W. Su, Y. Sankarasubramaniam, and E. Cayirci, "A survey on sensor networks," IEEE Communications Magazine, vol. 40, no. 8, pp. 102--114, Aug. 2002.
+   - [Read Paper](https://doi.org/10.1109/MCOM.2002.1024422)
+
+5. **Energy Conservation in WSN**
+   - G. Anastasi, M. Conti, M. Di Francesco, and A. Passarella, "Energy conservation in wireless sensor networks: A survey," Ad Hoc Networks, vol. 7, no. 3, pp. 537--568, May 2009.
+   - [Read Paper](https://doi.org/10.1016/j.adhoc.2008.06.003)
+
+6. **Energy-Aware WSN Design**
+   - V. Raghunathan, C. Schurgers, S. Park, and M. B. Srivastava, "Energy-aware wireless microsensor networks," IEEE Signal Processing Magazine, vol. 19, no. 2, pp. 40--50, Mar. 2002.
+   - [Read Paper](https://doi.org/10.1109/79.985679)
+
+These references provide the theoretical foundation and technical background for this project. Each paper contributes key concepts to our implementation:
+
+- The LEACH protocol paper introduces the fundamental clustering algorithm we use
+- The IEEE 802.15.4 standard defines our baseline protocol implementation
+- The OMNeT++ paper guides our simulation methodology
+- The WSN surveys inform our design decisions and performance metrics
+- The energy conservation papers shape our power management strategies
+
+---
+
 <div align="center">
 
 <p align="center">Built with ❤️ by Packet Pioneers</p>
+</div>

@@ -78,7 +78,7 @@ Wireless Sensor Networks, LEACH, IEEE 802.15.4, Energy Efficiency, OMNeT++, Clus
 
 Wireless Sensor Networks (WSNs) are composed of spatially distributed sensor nodes that collect, process, and transmit environmental data to a central base station. These networks have become integral to applications such as environmental monitoring, smart agriculture, industrial automation, and infrastructure health assessment~\cite{sensor_ref}. In many of these applications, sensor nodes are deployed in harsh or inaccessible environments where human intervention is costly or impossible. As a result, one of the most critical challenges in WSN design is energy efficiency, since nodes typically operate on limited battery power and are expected to function for extended periods without physical maintenance.
 
-Over the years, various communication protocols have been developed to address energy limitations in WSNs. Among them, LEACH (Low Energy Adaptive Clustering Hierarchy) is a hierarchical routing protocol that minimizes energy dissipation by rotating cluster head roles and aggregating data at the cluster level~\cite{leach_orig}. This rotation helps distribute the communication load evenly among all nodes, thus prolonging overall network lifetime. On the other hand, IEEE 802.15.4 is a standardized protocol commonly used in low-rate wireless personal area networks (LR-WPANs), providing low-power, reliable communication suitable for embedded IoT applications. While LEACH focuses on adaptive and energy-aware operation, IEEE 802.15.4 emphasizes interoperability and structured protocol stack integration.
+Over the years, various communication protocols have been developed to address energy limitations in WSNs. Among them, LEACH (Low Energy Adaptive Clustering Hierarchy) is a hierarchical routing protocol that minimizes energy dissipation by rotating cluster head roles and aggregating data at the cluster level~\cite{leach_journal}. This rotation helps distribute the communication load evenly among all nodes, thus prolonging overall network lifetime. On the other hand, IEEE 802.15.4 is a standardized protocol commonly used in low-rate wireless personal area networks (LR-WPANs), providing low-power, reliable communication suitable for embedded IoT applications. While LEACH focuses on adaptive and energy-aware operation, IEEE 802.15.4 emphasizes interoperability and structured protocol stack integration.
 
 To analyze and compare these protocols, simulation tools offer a reliable and cost-effective approach. OMNeT++ is a modular, extensible, C++-based simulation framework widely used for modeling communication networks~\cite{omnet_ref}. When integrated with frameworks like INET, it supports detailed simulation of wireless communication protocols, physical layer behavior, and energy consumption dynamics. Such simulation environments allow researchers to test different configurations, traffic loads, and failure scenarios under controlled conditions.
 
@@ -92,7 +92,7 @@ In this study, we conduct a comparative analysis of LEACH and IEEE 802.15.4 prot
 
 Research in wireless sensor networks (WSNs) has evolved significantly over the past two decades, with energy efficiency remaining a central focus due to the battery constraints of sensor nodes. Early studies by Akyildiz et al.\cite{sensor_ref} established the fundamental challenges in WSN design, emphasizing the critical nature of energy limitations and the need for energy-aware protocols to ensure network longevity. Comprehensive surveys by Yick et al.\cite{wsn_survey} and Anastasi et al.~\cite{energy_survey} have documented the progression of energy-efficient architectures and protocols, providing a foundation for subsequent innovations.
 
-The development of energy-aware protocols has followed several distinct approaches. Hierarchical routing protocols, exemplified by LEACH~\cite{leach_orig}, achieve notable energy savings through clustering and local data aggregation, thereby reducing transmission costs. Kumar et al.~\cite{leach_comp} extended these concepts with heterogeneous clustering schemes, enhancing energy distribution and improving network lifetime. In parallel, standardized protocols such as IEEE 802.15.4 have focused on enabling reliable and energy-efficient communication for resource-constrained WSN deployments.
+The development of energy-aware protocols has followed several distinct approaches. Hierarchical routing protocols, exemplified by LEACH~\cite{leach_journal}, achieve notable energy savings through clustering and local data aggregation, thereby reducing transmission costs.  In parallel, standardized protocols such as IEEE 802.15.4\cite{ieee802154_spec} have focused on enabling reliable and energy-efficient communication for resource-constrained WSN deployments.
 
 Recent research has increasingly explored cross-layer optimization and adaptive protocol design to further improve energy efficiency while maintaining reliability and scalability. Raghunathan et al.~\cite{wsn_energy} analyzed energy consumption patterns in microsensor networks, offering insights for designing optimized protocols. These studies collectively emphasize the importance of balancing energy efficiency with latency, reliability, and throughput in WSN protocol design.
 
@@ -106,7 +106,7 @@ Key factors affecting energy consumption include node density and network topolo
 
 IEEE 802.15.4 defines the physical and MAC layer specifications for low-rate wireless personal area networks (LR-WPANs), providing a foundation for protocols such as Zigbee and 6LoWPAN. Operating across multiple frequency bands, including 868/915 MHz and 2.4 GHz, the standard supports data rates ranging from 20 kbps to 250 kbps. The protocol specifies CSMA/CA-based channel access, optional guaranteed time slot (GTS) allocations for time-sensitive data, beacon-enabled network synchronization for organized communication, and adaptive power control mechanisms to reduce transmission energy.
 
-IEEE 802.15.4 supports various network topologies, including star, peer-to-peer, and cluster-tree configurations, allowing flexibility in deployment based on application requirements. Power-saving features such as coordinated sleep scheduling and indirect message transmission further contribute to extending node lifetimes, making the standard well-suited for resource-constrained WSN environments~\cite{ieee_standard}.
+IEEE 802.15.4 supports various network topologies, including star, peer-to-peer, and cluster-tree configurations, allowing flexibility in deployment based on application requirements. Power-saving features such as coordinated sleep scheduling and indirect message transmission further contribute to extending node lifetimes, making the standard well-suited for resource-constrained WSN environments~\cite{wsn_energy}.
 
 \subsection{Overview of LEACH Protocol}
 LEACH introduces a hierarchical routing approach based on dynamic clustering. The protocol operates in rounds, each consisting of setup and steady-state phases. Key features include:
@@ -329,6 +329,8 @@ Shadowing Standard Deviation & 4.0~dB \\
 Fading Model & Rayleigh \\
 \hline
 \end{tabular}
+
+\label{table:sim_params}
 \end{table}
 
 
@@ -446,44 +448,33 @@ Implementation complexity analysis reveals distinct architectural considerations
 \label{fig:performance_comparison}
 \end{figure}
 
-\begin{table}[h!]
-\caption{Comprehensive Protocol Performance Comparison}
-\label{table:performance_summary}
-\renewcommand{\arraystretch}{1.2}
+
+
+\begin{table}[h]
 \centering
-\begin{tabular}{|l|c|c|l|}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|c|c|}
 \hline
-\multicolumn{4}{|c|}{\textbf{Network Performance Metrics}} \\
+\textbf{Metric} & \textbf{IEEE 802.15.4} & \textbf{LEACH} \\
 \hline
-Packet Delivery Ratio & 85\% & 92\% & LEACH offers higher reliability \\
+Packet Delivery Ratio (\%) & 85 & 92 \\
+Average Throughput (kbps) & 143.2 & 168.7 \\
+End-to-End Delay (ms) & 45 & 38 \\
+Collision Rate (\%) & 12.3 & 7.8 \\
+Average Energy Consumption (J/node) & 0.85 & 0.60 \\
+Network Lifetime (cycles) & 3000 & 4500 \\
+Implementation Complexity & Low & Medium \\
+Scalability & Moderate & High \\
 \hline
-Average Throughput & 143.2 kbps & 168.7 kbps & LEACH improves data transfer \\
-\hline
-End-to-End Delay & 45 ms & 38 ms & LEACH reduces latency \\
-\hline
-Collision Rate & 12.3\% & 7.8\% & LEACH reduces collisions \\
-\hline
-\multicolumn{4}{|c|}{\textbf{Resource Management}} \\
-\hline
-Energy Efficiency & Baseline & +30\% & LEACH improves efficiency \\
-\hline
-Network Lifetime & 3000 cycles & 4500 cycles & LEACH extends lifetime \\
-\hline
-\multicolumn{4}{|c|}{\textbf{System Characteristics}} \\
-\hline
-Implementation & Low & Medium & Higher complexity in LEACH \\
-\hline
-Scalability & Medium & High & Better scaling in LEACH \\
-\hline
-Protocol Settings: IEEE 802.15.4 (2.4 GHz, CSMA/CA), \\
-LEACH (P = 0.05, TDMA) \\
 \end{tabular}
+\caption{Comprehensive Performance Comparison: IEEE 802.15.4 vs. LEACH}
+\label{table:performance_comparison}
 \end{table}
+
 
 Operational characteristics demonstrate protocol-specific advantages. LEACH exhibits superior adaptability to network changes and node failures, maintaining operational efficiency through self-organizing mechanisms. IEEE 802.15.4 provides consistent performance with reduced management overhead, particularly beneficial in stable network configurations.
 
 
-\newpage
 \subsection{Application-Specific Considerations}
 Protocol selection criteria vary significantly based on deployment requirements. LEACH demonstrates particular effectiveness in large-scale environmental monitoring applications, where energy efficiency and scalability are paramount. The protocol's data aggregation capabilities provide significant advantages in applications with spatially correlated measurements.
 
