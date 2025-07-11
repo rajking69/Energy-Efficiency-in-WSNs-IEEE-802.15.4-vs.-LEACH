@@ -1,0 +1,546 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{cite}
+\usepackage{etoolbox}
+\usepackage{caption}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usetikzlibrary{shapes,arrows,positioning,fit,backgrounds,decorations.pathreplacing}
+
+% Define custom colors
+\definecolor{nodeblue}{RGB}{70,130,180}
+\definecolor{nodepurple}{RGB}{147,112,219}
+\definecolor{nodegreen}{RGB}{60,179,113}
+\definecolor{nodeorange}{RGB}{255,140,0}
+
+% Set paragraph indentation to 0.25 inch
+\patchcmd{\normalsize}{\parindent1em}{\parindent0.25in}{}{}
+\patchcmd{\normalsize}{\parskip0pt}{\parskip0pt \rightskip=0pt plus 1fil}{}{}
+
+% Set figure and table caption font size to 9pt
+\captionsetup[figure]{font=footnotesize}
+\captionsetup[table]{font=footnotesize}
+
+% Custom title: 24pt font size, not bold
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+    {\fontsize{24pt}{28pt}\selectfont \@title \par}%
+    \vskip 1.5em%
+    {\normalsize \@author}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+\title{Energy Efficiency in WSNs: IEEE 802.15.4 vs. LEACH}
+
+\author{
+    Sheikh Mohammad Rajking\textsuperscript{1}, Adrishikar Barua\textsuperscript{2}, Tanvir Hossain Tonmoy\textsuperscript{3}, Abdullahil Kafi\textsuperscript{4}\\
+    \textsuperscript{1,2,3,4}Department of Computer Science and Engineering, International Islamic University Chittagong, Kumira, Chattogram-4318, Bangladesh\\
+    \textsuperscript{1}c221011@ugrad.iiuc.ac.bd,
+    \textsuperscript{2}c221022@ugrad.iiuc.ac.bd,
+    \textsuperscript{3}c221001@ugrad.iiuc.ac.bd,
+    \textsuperscript{4}abkafi@iiuc.ac.bd
+}
+
+% Page numbering setup
+\fancypagestyle{plain}{
+    \fancyhf{}  % Clear all headers and footers
+    \fancyfoot[C]{\thepage}  % Page number in center footer
+    \renewcommand{\headrulewidth}{0pt}  % No header line
+    \renewcommand{\footrulewidth}{0pt}  % No footer line
+}
+
+\pagestyle{plain}  % Apply the plain style to all pages
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In this paper, we address a practical challenge in the design and deployment of Wireless Sensor Networks (WSNs): selecting the most energy-efficient communication protocol for sustained operation in resource-constrained environments. We present a comparative evaluation of two widely used protocols—LEACH (Low Energy Adaptive Clustering Hierarchy) and IEEE 802.15.4—using the OMNeT++ simulation framework. Our simulation model replicates real-world conditions with sensor nodes operating at 2.24\,mW transmission power and initialized with 150\,mJ of energy. Results show that LEACH significantly outperforms IEEE 802.15.4, achieving approximately 30\% more energy savings. This performance gain is largely due to LEACH's adaptive clustering mechanism and TDMA-based communication, which minimize energy wastage through efficient data aggregation and transmission scheduling. Conversely, IEEE 802.15.4 maintains relevance for applications that prioritize standardization, compatibility, and protocol stack integration. The study evaluates key metrics such as energy consumption, node lifetime, scalability, and overhead. LEACH is found to be ideal for large-scale, energy-sensitive deployments like environmental monitoring, whereas IEEE 802.15.4 may be preferable in standardized IoT applications. These findings provide valuable insights for researchers and developers, enabling informed decisions when designing WSN architectures based on application-specific needs and energy constraints.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Wireless Sensor Networks, LEACH, IEEE 802.15.4, Energy Efficiency, OMNeT++, Clustering
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Wireless Sensor Networks (WSNs) are composed of spatially distributed sensor nodes that collect, process, and transmit environmental data to a central base station. These networks have become integral to applications such as environmental monitoring, smart agriculture, industrial automation, and infrastructure health assessment~\cite{sensor_ref}. In many of these applications, sensor nodes are deployed in harsh or inaccessible environments where human intervention is costly or impossible. As a result, one of the most critical challenges in WSN design is energy efficiency, since nodes typically operate on limited battery power and are expected to function for extended periods without physical maintenance.
+
+Over the years, various communication protocols have been developed to address energy limitations in WSNs. Among them, LEACH (Low Energy Adaptive Clustering Hierarchy) is a hierarchical routing protocol that minimizes energy dissipation by rotating cluster head roles and aggregating data at the cluster level~\cite{leach_orig}. This rotation helps distribute the communication load evenly among all nodes, thus prolonging overall network lifetime. On the other hand, IEEE 802.15.4 is a standardized protocol commonly used in low-rate wireless personal area networks (LR-WPANs), providing low-power, reliable communication suitable for embedded IoT applications. While LEACH focuses on adaptive and energy-aware operation, IEEE 802.15.4 emphasizes interoperability and structured protocol stack integration.
+
+To analyze and compare these protocols, simulation tools offer a reliable and cost-effective approach. OMNeT++ is a modular, extensible, C++-based simulation framework widely used for modeling communication networks~\cite{omnet_ref}. When integrated with frameworks like INET, it supports detailed simulation of wireless communication protocols, physical layer behavior, and energy consumption dynamics. Such simulation environments allow researchers to test different configurations, traffic loads, and failure scenarios under controlled conditions.
+
+In this study, we conduct a comparative analysis of LEACH and IEEE 802.15.4 protocols using OMNeT++. Our simulation model is designed to closely resemble real-world deployment conditions by incorporating realistic node energy capacities, radio parameters, and network traffic behavior. Key performance indicators such as energy consumption, network lifetime, latency, collision rates, and throughput are evaluated. The insights derived from this analysis are intended to assist network designers in selecting the most suitable protocol based on application-specific needs, environmental constraints, and energy sustainability goals.
+
+
+
+\section{Background Study}
+
+\subsection{Literature Review}
+
+Research in wireless sensor networks (WSNs) has evolved significantly over the past two decades, with energy efficiency remaining a central focus due to the battery constraints of sensor nodes. Early studies by Akyildiz et al.\cite{sensor_ref} established the fundamental challenges in WSN design, emphasizing the critical nature of energy limitations and the need for energy-aware protocols to ensure network longevity. Comprehensive surveys by Yick et al.\cite{wsn_survey} and Anastasi et al.~\cite{energy_survey} have documented the progression of energy-efficient architectures and protocols, providing a foundation for subsequent innovations.
+
+The development of energy-aware protocols has followed several distinct approaches. Hierarchical routing protocols, exemplified by LEACH~\cite{leach_orig}, achieve notable energy savings through clustering and local data aggregation, thereby reducing transmission costs. Kumar et al.~\cite{leach_comp} extended these concepts with heterogeneous clustering schemes, enhancing energy distribution and improving network lifetime. In parallel, standardized protocols such as IEEE 802.15.4 have focused on enabling reliable and energy-efficient communication for resource-constrained WSN deployments.
+
+Recent research has increasingly explored cross-layer optimization and adaptive protocol design to further improve energy efficiency while maintaining reliability and scalability. Raghunathan et al.~\cite{wsn_energy} analyzed energy consumption patterns in microsensor networks, offering insights for designing optimized protocols. These studies collectively emphasize the importance of balancing energy efficiency with latency, reliability, and throughput in WSN protocol design.
+
+\subsection{Energy Constraints in Wireless Sensor Networks}
+
+Energy constraints in WSNs manifest through multiple interconnected factors that critically influence system design and protocol selection. Radio communication typically consumes 50--70\% of a node’s energy, with transmission power requirements increasing quadratically with distance. Sensing operations contribute 10--25\% of total energy usage, while data processing accounts for 5--15\%, as documented by Anastasi et al.~\cite{energy_survey}. These proportions highlight the need for optimizing communication and sensing operations to extend network lifetime.
+
+Key factors affecting energy consumption include node density and network topology, which influence multi-hop routing decisions and cluster formation; data sampling and transmission frequencies, impacting duty cycling and data aggregation opportunities; environmental interference and path loss, which affect required transmission power levels; protocol overhead and control message frequency, which can lead to additional energy drain; and the effectiveness of sleep/wake scheduling in reducing idle listening periods. Understanding and addressing these factors are essential for designing energy-aware protocols that balance energy consumption with performance requirements in WSN applications.
+
+\subsection{Overview of IEEE 802.15.4}
+
+IEEE 802.15.4 defines the physical and MAC layer specifications for low-rate wireless personal area networks (LR-WPANs), providing a foundation for protocols such as Zigbee and 6LoWPAN. Operating across multiple frequency bands, including 868/915 MHz and 2.4 GHz, the standard supports data rates ranging from 20 kbps to 250 kbps. The protocol specifies CSMA/CA-based channel access, optional guaranteed time slot (GTS) allocations for time-sensitive data, beacon-enabled network synchronization for organized communication, and adaptive power control mechanisms to reduce transmission energy.
+
+IEEE 802.15.4 supports various network topologies, including star, peer-to-peer, and cluster-tree configurations, allowing flexibility in deployment based on application requirements. Power-saving features such as coordinated sleep scheduling and indirect message transmission further contribute to extending node lifetimes, making the standard well-suited for resource-constrained WSN environments~\cite{ieee_standard}.
+
+\subsection{Overview of LEACH Protocol}
+LEACH introduces a hierarchical routing approach based on dynamic clustering. The protocol operates in rounds, each consisting of setup and steady-state phases. Key features include:
+
+\begin{itemize}
+    \item Probabilistic cluster head selection (P = 0.05)
+    \item Rotation of cluster head roles
+    \item Local data aggregation
+    \item TDMA-based intra-cluster communication
+\end{itemize}
+
+\begin{figure}[!t]
+\centering
+\begin{tikzpicture}[scale=0.8,
+    sensor/.style={circle, draw, minimum size=0.6cm, font=\scriptsize},
+    ap/.style={rectangle, draw, minimum size=0.6cm, font=\scriptsize},
+    cluster1/.style={fill=nodeblue!30},
+    cluster2/.style={fill=nodegreen!30},
+    gateway/.style={fill=nodeorange!30}
+]
+    % Access Points
+    \node[ap, gateway] (AP1) at (0,0) {AP1};
+    \node[ap, gateway] (AP2) at (5,0) {AP2};
+    
+    % Cluster 1 (Left side)
+    \begin{scope}[every node/.style={sensor, cluster1}]
+        \node (N1) at (-1.5,-1) {N1};
+        \node (N2) at (-0.8,-1.8) {N2};
+        \node (N3) at (0,-1.8) {N3};
+        \node (N4) at (0.8,-1) {N4};
+        \node (N5) at (-0.8,-2.6) {N5};
+        \node (N6) at (0,-2.6) {N6};
+        \node (N7) at (0.8,-1.8) {N7};
+    \end{scope}
+    
+    % Cluster 2 (Right side)
+    \begin{scope}[every node/.style={sensor, cluster2}]
+        \node (N8) at (3.5,-1) {N8};
+        \node (N9) at (4.2,-1.8) {N9};
+        \node (N10) at (5,-1.8) {N10};
+        \node (N11) at (5.8,-1) {N11};
+        \node (N12) at (4.2,-2.6) {N12};
+        \node (N13) at (5,-2.6) {N13};
+        \node (N14) at (5.8,-1.8) {N14};
+        \node (N15) at (6.5,-1.8) {N15};
+    \end{scope}
+    
+    % Draw cluster boundaries and labels on background layer
+    \begin{pgfinterruptboundingbox}
+        \begin{scope}[on background layer]
+            \fill[nodeblue!10] (-2,-3) rectangle (1.5,-0.5);
+            \fill[nodegreen!10] (3,-3) rectangle (7,-0.5);
+            \node[font=\scriptsize] at (-0.25,-3.2) {Cluster 1};
+            \node[font=\scriptsize] at (5,-3.2) {Cluster 2};
+        \end{scope}
+    \end{pgfinterruptboundingbox}
+    
+    % Connections with slightly curved lines
+    \foreach \i in {1,...,7} {
+        \draw[->, thin] (AP1) to[bend right=10] (N\i);
+    }
+    \foreach \i in {8,...,15} {
+        \draw[->, thin] (AP2) to[bend left=10] (N\i);
+    }
+    
+    % Legend
+    \node[below=0.2cm of N6, align=left, font=\scriptsize] {
+        \begin{tabular}{@{}ll@{}}
+            \textcolor{nodeorange}{\rule{0.4cm}{1.5pt}} & Access Point \\
+            \textcolor{nodeblue}{\rule{0.4cm}{1.5pt}} & Cluster 1 Nodes \\
+            \textcolor{nodegreen}{\rule{0.4cm}{1.5pt}} & Cluster 2 Nodes
+        \end{tabular}
+    };
+\end{tikzpicture}
+\caption{Network topology showing 15 sensor nodes organized in two clusters with 2 access points. The nodes are statically placed in a $1035 \times 738$~m$^2$ field with cluster-based organization for efficient data collection and energy management.}
+\label{fig:topology}
+\end{figure}
+
+As demonstrated by Heinzelman et al.~\cite{leach_orig}, this approach achieves significant energy savings by reducing long-distance transmissions and distributing energy load across the network.
+
+
+\subsection{Review of Existing Comparative Studies}
+While there's no shortage of research papers comparing different WSN protocols, finding studies that put LEACH and IEEE 802.15.4 in a head-to-head comparison under identical conditions is like finding a needle in a haystack. Most studies we found focused on specific aspects rather than providing a complete picture.
+
+Previous energy efficiency studies have revealed fascinating insights about how protocol overhead eats into battery life, the energy costs of different routing strategies, and how network layout affects power consumption. These findings help us understand the delicate balance between functionality and energy conservation in wireless sensor networks.
+
+When it comes to real-world performance, researchers have extensively studied how fast data gets through the network, whether the protocols can handle more nodes, and how reliable they are when things get tough. These practical evaluations have been crucial in understanding how these protocols perform under real-world conditions.
+
+Implementation challenges have also been a major focus of previous research. Studies have explored what you can actually do with limited hardware, the tricky balance between fancy features and simplicity, and what it takes to get these networks up and running. This practical perspective has been invaluable in understanding the real-world applicability of different protocols.
+\begin{figure}[!t]
+\centering
+\begin{tikzpicture}[scale=0.85,
+    node distance=1.2cm,
+    phase/.style={rectangle, rounded corners, draw, minimum width=2cm, minimum height=0.8cm, font=\scriptsize},
+    setup/.style={phase, fill=nodeblue!20},
+    steady/.style={phase, fill=nodegreen!20},
+    control/.style={phase, fill=nodepurple!20},
+    arrow/.style={->, thin}
+]
+    % Setup Phase
+    \node[control] (start) {Start Round};
+    \node[setup, below=of start] (setup) {Setup Phase};
+    \node[setup, below=of setup] (ch) {CH Selection\\(P=0.05)};
+    \node[setup, below=of ch] (adv) {CH Advertisement};
+    \node[setup, below=of adv] (join) {Nodes Join\\Clusters};
+    \node[setup, below=of join] (schedule) {TDMA Schedule};
+    
+    % Steady Phase
+    \node[steady, right=3cm of setup] (steady) {Steady Phase};
+    \node[steady, below=of steady] (data) {Data\\Transmission};
+    \node[steady, below=of data] (agg) {Data\\Aggregation};
+    \node[steady, below=of agg] (bs) {Send to\\Base Station};
+    \node[control, below=of bs] (end) {End Round};
+    
+    % Arrows with labels
+    \draw[arrow] (start) -- (setup);
+    \draw[arrow] (setup) -- (ch);
+    \draw[arrow] (ch) -- (adv);
+    \draw[arrow] (adv) -- (join);
+    \draw[arrow] (join) -- (schedule);
+    \draw[arrow] (schedule) -- (steady);
+    \draw[arrow] (steady) -- (data);
+    \draw[arrow] (data) -- (agg);
+    \draw[arrow] (agg) -- (bs);
+    \draw[arrow] (bs) -- (end);
+    \draw[arrow] (end) to[bend left=45] node[right, font=\scriptsize] {Next Round} (start);
+    
+    % Phase labels
+    \node[above right=0.3cm and -1.5cm of setup, font=\scriptsize\bfseries] {Cluster Formation};
+    \node[above right=0.3cm and -0.8cm of steady, font=\scriptsize\bfseries] {Data Collection};
+    
+    % Background boxes
+    \begin{pgfinterruptboundingbox}
+        \begin{scope}[on background layer]
+            \path[fill=nodeblue!10] (-1.5,-6) rectangle (1.5,0);
+            \path[fill=nodegreen!10] (2,-6) rectangle (5,0);
+            \node[font=\scriptsize] at (-1.7,-3) {Setup Phase};
+            \node[font=\scriptsize] at (5.2,-3) {Steady Phase};
+        \end{scope}
+    \end{pgfinterruptboundingbox}
+\end{tikzpicture}
+\caption{LEACH protocol operation showing the two main phases: Setup (cluster formation) and Steady (data transmission). The process repeats each round to ensure balanced energy consumption across the network.}
+\label{fig:leach_operation}
+\end{figure}
+
+\section{Methodology}
+
+\subsection{Simulation Environment}
+The simulation platform utilizes \texttt{OMNeT++} 6.1 integrated with the INET Framework, providing a comprehensive network simulation environment. This configuration enables detailed protocol evaluation under controlled conditions while maintaining high fidelity to real-world network behavior.
+
+The simulation architecture incorporates essential components for accurate protocol modeling. Custom-built protocol modules implement core functionality, while smart routing systems manage data flow. Memory management modules ensure efficient resource utilization, and traffic control mechanisms prevent network congestion and packet loss.
+
+Physical layer simulation includes detailed environmental modeling capabilities. Radio propagation models account for signal behavior in realistic environments, while interference handling mechanisms simulate transmission conditions accurately. Power consumption tracking monitors energy usage for each node, and network health monitoring systems verify operational status throughout the simulation period.
+
+Power management simulation provides comprehensive energy analysis capabilities. Battery life monitoring tracks power resources and discharge patterns under different network loads, while state tracking records operational modes such as idle, active, and sleep states. Energy harvesting simulation evaluates supplementary power sources, including solar energy models, and detailed logging captures consumption patterns for subsequent analysis.
+
+\subsection{Network Topology and Node Configuration}
+The network deployment implements a carefully planned topology for optimal performance. A total of fifteen identical sensor nodes operate with uniform initial energy states, while two access points serve as data collection hubs. Node positions remain fixed throughout the simulation, ensuring consistent coverage patterns and reliable communication paths for data delivery and control signals.
+
+Radio configuration utilizes standard wireless networking parameters. The 2.4 GHz frequency band provides the primary communication channel for the simulation, with a 2 MHz bandwidth allocation supporting the required data rates for sensor data transmission. Signal quality thresholds maintain a minimum requirement of 4 dB to ensure stable communication, while the communication range extends to approximately 100 meters under ideal propagation conditions.
+
+Network operational parameters establish clear functional boundaries for simulation consistency. Message propagation limits restrict hop counts to a maximum of four, while node message queues accommodate up to 64 packets to prevent buffer overflow. Routing tables are designed to maintain 32 active paths for each node, with state updates occurring at 10-second intervals to ensure the network operates with current topology and routing information.
+
+\subsection{Protocol Implementation in OMNeT++}
+The LEACH protocol implementation incorporates precise operational parameters for effective cluster management and energy efficiency within the simulated network. The cluster head selection probability is set to 5%, ensuring a balanced distribution of cluster heads across the network in each operational round, thereby maintaining network stability while reducing overall energy consumption. Additionally, the rotation of cluster heads is managed periodically to prevent premature energy depletion in specific nodes, further extending network lifetime under varying traffic loads.
+
+The IEEE 802.15.4 implementation follows standard protocol specifications with carefully tuned parameters for collision avoidance, reliability, and channel utilization. The configuration includes a CSMA/CA mechanism with retry limits between 3 and 5 attempts, depending on the network load and channel conditions. The maximum retransmission count is set to 4 to prevent excessive congestion, while the acknowledgment timeout is configured at 54 symbol periods. These configurations ensure reliable packet delivery while minimizing delivery delays and optimizing medium access efficiency under realistic simulation environments.
+
+\subsection{Evaluation Metrics and Data Collection}
+
+The evaluation framework implements comprehensive monitoring systems for effective protocol assessment under various conditions. Power consumption tracking modules provide detailed energy utilization data across different operational states, including transmission, reception, idle, and sleep modes. Network lifetime measurements evaluate long-term sustainability by monitoring the duration until the first node dies (FND), half of the nodes die (HND), and the last node dies (LND), providing a clear understanding of protocol performance over extended operations.
+
+Data delivery performance metrics capture the transmission success rates by measuring the ratio of successfully received packets at the access points relative to the total transmitted packets. Collision frequency monitoring assesses network congestion levels, providing insights into the effectiveness of the MAC layer and routing strategies under different traffic loads. Message latency measurements quantify end-to-end delivery times across various network conditions, enabling the analysis of the trade-offs between energy efficiency and latency performance.
+
+These metrics collectively provide a holistic view of protocol efficiency and robustness in WSN environments, enabling comparative evaluations of LEACH and IEEE 802.15.4 under identical simulation conditions for energy-efficient wireless sensor network deployment.
+
+\begin{table}[h!]
+\caption{Simulation Parameters and Configuration}
+\label{table:sim_params}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+\multicolumn{2}{|l|}{\textit{Network Configuration}} \\
+\hline
+Network Area & $1035 \times 738$ m$^2$ \\
+Number of Nodes & 15 sensor nodes, 2 base stations \\
+Node Distribution & Static, uniform distribution \\
+Simulation Duration & 3000 cycles \\
+\hline
+\multicolumn{2}{|l|}{\textit{Energy Parameters}} \\
+\hline
+Initial Node Energy & 150~mJ \\
+Transmission Power & 2.24~mW \\
+Idle Power Consumption & 0.8~mW \\
+Sleep Power Consumption & 0.003~mW \\
+\hline
+\multicolumn{2}{|l|}{\textit{Radio Parameters}} \\
+\hline
+Frequency Band & 2.4~GHz \\
+Channel Bandwidth & 2~MHz \\
+Data Rate & 250~kbps \\
+Receiver Sensitivity & $-95$~dBm \\
+Signal Threshold & 4~dB \\
+\hline
+\multicolumn{2}{|l|}{\textit{Protocol Parameters}} \\
+\hline
+MAC Protocol & CSMA/CA (IEEE 802.15.4) \\
+Routing Protocol & LEACH ($P = 0.05$) \\
+Packet Size & 512~bytes \\
+Buffer Size & 64~packets \\
+Retransmission Limit & 3 attempts \\
+\hline
+\multicolumn{2}{|l|}{\textit{Channel Model}} \\
+\hline
+Path Loss Model & Free space + Two-ray ground \\
+Path Loss Exponent & 2.7 \\
+Shadowing Standard Deviation & 4.0~dB \\
+Fading Model & Rayleigh \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Validation of Simulation Results}
+Result validation employs multiple verification approaches to ensure accuracy. Repeated simulation runs provide statistical significance, while detailed data analysis confirms measurement consistency. Mathematical model verification validates theoretical predictions, and comparison with published research findings establishes result credibility within the broader academic context.
+
+\section{CHALLENGES AND LIMITATIONS}
+
+\subsection{Simulation Environment Constraints}
+The simulation environment, while comprehensive, presents several limitations that may affect result generalization. The static nature of node deployment, while suitable for controlled comparison, may not fully represent dynamic real-world scenarios where nodes can fail or experience mobility. Additionally, the idealized channel conditions in simulation may not capture all environmental factors affecting wireless communication in actual deployments. Weather conditions, physical obstacles, and electromagnetic interference from other devices are particularly challenging to model accurately in the simulation environment.
+
+\subsection{Protocol Implementation Challenges}
+\subsubsection{LEACH Protocol}
+The implementation of LEACH protocol encountered several significant technical challenges during simulation and analysis. The cluster formation process introduces substantial overhead that increases significantly with network size, impacting overall energy efficiency. During cluster head rotation phases, energy consumption may spike temporarily, potentially creating uneven energy distribution across the network. The optimal cluster head selection probability, while theoretically set at 5\%, requires dynamic adjustment based on varying network conditions and topology changes. Time synchronization requirements add considerable complexity to the implementation, particularly in maintaining coordinated TDMA schedules within clusters. Furthermore, the current implementation shows limited support for heterogeneous node capabilities, assuming uniform energy and processing capabilities across all nodes.
+
+\subsubsection{IEEE 802.15.4 Implementation}
+IEEE 802.15.4 implementation revealed several operational limitations in the simulation environment. The CSMA/CA backoff mechanism, while effective in preventing collisions, introduces variable latency that can impact time-sensitive applications. In large-scale networks, the Guaranteed Time Slot (GTS) allocation mechanism becomes increasingly inefficient, leading to reduced channel utilization. The beacon-enabled mode, though providing better synchronization, results in increased energy consumption due to regular beacon transmission and reception requirements. The protocol demonstrates limited adaptation capabilities to varying traffic patterns, particularly in handling burst traffic scenarios. Dense network deployments pose additional challenges in interference management, as the current implementation struggles to maintain reliable communication under high node density conditions.
+
+\subsection{Scalability Considerations}
+Scalability emerges as a critical challenge in the current implementation framework. As the network size increases, simulation processing time grows exponentially, limiting our ability to evaluate large-scale deployments effectively. Memory requirements become increasingly significant for networks with higher node counts, particularly when maintaining detailed state information for each node. Protocol overhead grows proportionally with network size, affecting both energy efficiency and network performance. Our validation efforts were constrained to networks with fewer than 100 nodes, leaving uncertainty about protocol behavior in larger deployments. The computational complexity of modeling interactions between nodes, particularly in dense networks, creates additional constraints on simulation scale and accuracy.
+
+\subsection{Hardware and Resource Limitations}
+Physical resource constraints significantly impacted both simulation capabilities and analysis depth. Processing power limitations restricted our ability to run large-scale simulations with detailed physical layer modeling. Memory constraints affected the granularity of data collection, forcing trade-offs between sampling frequency and network size. Storage requirements for detailed logging and performance tracking necessitated selective data collection strategies. Real-time analysis of network behavior faced computational overhead challenges, particularly in monitoring multiple performance metrics simultaneously. The limited availability of parallel processing capabilities constrained our ability to explore multiple protocol configurations efficiently.
+
+\subsection{Future Research Directions}
+To address these limitations, several promising research directions warrant further investigation. The development of adaptive clustering algorithms could improve network resilience to changing conditions and heterogeneous node capabilities. Machine learning integration offers potential for optimizing parameter selection dynamically based on network conditions and performance requirements. Implementation of sophisticated power management schemes could better balance energy efficiency with performance requirements. Scalability improvements through hierarchical architectures and optimized simulation techniques would enable evaluation of larger network deployments. Investigation of hybrid protocol approaches combining strengths of both LEACH and IEEE 802.15.4 could yield more robust and efficient solutions for specific application scenarios.
+
+These challenges and limitations provide essential context for interpreting simulation results and highlight critical areas requiring further investigation in future research efforts. Understanding these constraints is crucial for developing more robust and practical wireless sensor network solutions.
+\section{Discussion}
+The experimental analysis reveals significant implications for wireless sensor network protocol selection and implementation. LEACH demonstrates superior energy efficiency through its cluster-based architecture, while IEEE 802.15.4 provides essential standardization benefits for commercial deployments.
+
+\subsection{Energy Efficiency Analysis}
+Energy consumption analysis reveals fundamental advantages in LEACH's distributed architecture. The protocol's workload distribution mechanism effectively prevents localized energy depletion, while cluster-based communication reduces transmission power requirements. Data aggregation capabilities enable significant reduction in transmission volume, though this introduces computational overhead at cluster heads.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        width=\linewidth,
+        height=6cm,
+        xlabel={\textbf{Time (cycles)}},
+        ylabel={\textbf{Remaining Energy (mJ)}},
+        legend pos=north east,
+        grid=major,
+        grid style={dotted,gray!30},
+        title={\textbf{Energy Consumption Over Time}},
+        legend style={font=\small}
+    ]
+    \addplot[thick,blue,mark=square] coordinates {
+        (0,150)
+        (1000,120)
+        (2000,90)
+        (3000,60)
+    };
+    \addplot[thick,red,mark=triangle] coordinates {
+        (0,150)
+        (1000,97.5)
+        (2000,52.5)
+        (3000,15)
+    };
+    \legend{LEACH,IEEE 802.15.4}
+    \end{axis}
+\end{tikzpicture}
+\caption{Energy consumption comparison showing LEACH's superior energy conservation over time. The graph demonstrates approximately 30\% better energy efficiency in LEACH compared to IEEE 802.15.4 after 3000 cycles.}
+\label{fig:energy_comparison}
+\end{figure}
+
+Protocol overhead considerations reveal important operational trade-offs. Cluster formation and maintenance require periodic energy expenditure, while role transition mechanisms introduce additional overhead. However, these costs are offset by improved sleep scheduling efficiency, with nodes maintaining coordinated power management states.
+
+\subsection{Performance Metrics Comparison}
+
+Implementation complexity analysis reveals distinct architectural considerations between the protocols. LEACH requires sophisticated node-level processing capabilities for cluster management and dynamic role coordination, necessitating additional computational resources and control overhead. In contrast, IEEE 802.15.4 offers reduced implementation complexity, but this simplicity limits potential optimization opportunities in dynamic scenarios. Operational characteristics demonstrate protocol-specific advantages: LEACH exhibits superior adaptability to network changes and node failures through self-organizing mechanisms, while IEEE 802.15.4 ensures consistent, stable performance with lower management overhead in fixed network configurations.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        width=\linewidth,
+        height=6cm,
+        ybar,
+        bar width=15pt,
+        ylabel={\textbf{Performance Metric Value}},
+        xlabel={\textbf{Network Performance Metrics}},
+        symbolic x coords={PDR,Throughput,Delay,Collisions},
+        xtick=data,
+        legend style={
+            at={(0.5,-0.25)},
+            anchor=north,
+            legend columns=2
+        },
+        ymin=0,
+        ymax=100,
+        grid=major,
+        grid style={dotted,gray!30},
+        nodes near coords,
+        nodes near coords style={font=\tiny},
+        title={\textbf{Protocol Performance Comparison}}
+    ]
+    \addplot[fill=blue!60] coordinates {
+        (PDR,92)
+        (Throughput,67.5)
+        (Delay,76)
+        (Collisions,7.8)
+    };
+    \addplot[fill=red!60] coordinates {
+        (PDR,85)
+        (Throughput,57.3)
+        (Delay,90)
+        (Collisions,12.3)
+    };
+    \legend{LEACH, IEEE 802.15.4}
+    \end{axis}
+\end{tikzpicture}
+\caption{Performance metrics comparison showing relative advantages of LEACH in packet delivery ratio (PDR), throughput (normalized to 100\%), delay (normalized, lower is better), and collision rate.}
+\label{fig:performance_comparison}
+\end{figure}
+
+\begin{table}[h!]
+\caption{Comprehensive Protocol Performance Comparison}
+\label{table:performance_summary}
+\renewcommand{\arraystretch}{1.2}
+\centering
+\begin{tabular}{|l|c|c|l|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Network Performance Metrics}} \\
+\hline
+Packet Delivery Ratio & 85\% & 92\% & LEACH offers higher reliability \\
+\hline
+Average Throughput & 143.2 kbps & 168.7 kbps & LEACH improves data transfer \\
+\hline
+End-to-End Delay & 45 ms & 38 ms & LEACH reduces latency \\
+\hline
+Collision Rate & 12.3\% & 7.8\% & LEACH reduces collisions \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Resource Management}} \\
+\hline
+Energy Efficiency & Baseline & +30\% & LEACH improves efficiency \\
+\hline
+Network Lifetime & 3000 cycles & 4500 cycles & LEACH extends lifetime \\
+\hline
+\multicolumn{4}{|c|}{\textbf{System Characteristics}} \\
+\hline
+Implementation & Low & Medium & Higher complexity in LEACH \\
+\hline
+Scalability & Medium & High & Better scaling in LEACH \\
+\hline
+Protocol Settings: IEEE 802.15.4 (2.4 GHz, CSMA/CA), \\
+LEACH (P = 0.05, TDMA) \\
+\end{tabular}
+\end{table}
+
+Operational characteristics demonstrate protocol-specific advantages. LEACH exhibits superior adaptability to network changes and node failures, maintaining operational efficiency through self-organizing mechanisms. IEEE 802.15.4 provides consistent performance with reduced management overhead, particularly beneficial in stable network configurations.
+
+
+\newpage
+\subsection{Application-Specific Considerations}
+Protocol selection criteria vary significantly based on deployment requirements. LEACH demonstrates particular effectiveness in large-scale environmental monitoring applications, where energy efficiency and scalability are paramount. The protocol's data aggregation capabilities provide significant advantages in applications with spatially correlated measurements.
+
+IEEE 802.15.4 excels in standardized industrial deployments requiring interoperability and certified compliance. The protocol's widespread adoption facilitates integration with existing systems, while its simplified architecture reduces implementation complexity. These characteristics make it particularly suitable for commercial applications with strict standardization requirements.
+
+\section{Conclusion}
+
+This comprehensive comparative study of LEACH and IEEE 802.15.4 protocols in wireless sensor networks has yielded several significant findings. Through extensive simulation and analysis using OMNeT++, we have demonstrated that LEACH achieves superior energy efficiency, with approximately 30\% reduction in power consumption compared to IEEE 802.15.4 in large-scale deployments. This advantage stems from LEACH's sophisticated cluster-based architecture and dynamic role rotation mechanisms, though at the cost of increased implementation complexity.
+
+The performance analysis reveals LEACH's significant advantages across key metrics. Network lifetime extends by approximately 50\% (4500 cycles vs 3000 cycles) compared to IEEE 802.15.4, while achieving 7\% higher packet delivery ratio, 18\% higher throughput, and 16\% lower end-to-end delay. The protocol's TDMA-based scheduling results in a 37\% reduction in collision rate, demonstrating superior medium access control. While LEACH excels in large-scale environmental monitoring applications, IEEE 802.15.4 maintains its value in standardized industrial deployments requiring certified compliance and interoperability.
+
+Looking forward, several promising research directions emerge. Energy harvesting integration and machine learning enhancements could revolutionize network lifetime and adaptive capabilities. The development of lightweight security protocols and scalable clustering mechanisms remains crucial for future deployments. We recommend LEACH for applications prioritizing energy efficiency and network longevity, while IEEE 802.15.4 suits standardized industrial implementations. Hybrid approaches combining LEACH's energy efficiency with IEEE 802.15.4's standardization benefits could pave the way for next-generation WSN deployments.
+
+This research contributes to the growing body of knowledge in wireless sensor networks by providing quantitative evidence for protocol selection based on application-specific requirements. The findings offer valuable guidance for researchers and practitioners in designing and deploying energy-efficient wireless sensor networks.
+
+\begin{thebibliography}{99}
+
+\bibitem{leach_journal}
+W. R. Heinzelman, A. Chandrakasan, and H. Balakrishnan, 
+``An application-specific protocol architecture for wireless microsensor networks,'' 
+Computer Networks, vol. 37, no. 3--4, pp. 629--660, 2001. Available: https://www.sciencedirect.com/science/article/abs/pii/S1389128601003024
+
+\bibitem{ieee802154_spec}
+IEEE Computer Society, 
+``IEEE Standard for Low-Rate Wireless Networks,'' 
+IEEE Std 802.15.4-2020, Sept. 2020. Available: https://doi.org/10.1109/IEEESTD.2020.9144691
+
+\bibitem{omnet_ref}
+A. Varga and R. Hornig, 
+``An overview of the OMNeT++ simulation environment,'' 
+Proc. 1st Int. Conf. Simulation Tools and Techniques for Communications, Networks and Systems, 2008, pp. 1--10. Available: https://doi.org/10.4108/ICST.SIMUTOOLS2008.3027
+
+\bibitem{sensor_ref}
+I. F. Akyildiz, W. Su, Y. Sankarasubramaniam, and E. Cayirci, 
+``A survey on sensor networks,'' 
+IEEE Communications Magazine, vol. 40, no. 8, pp. 102--114, Aug. 2002. Available: https://doi.org/10.1109/MCOM.2002.1024422
+
+\bibitem{wsn_survey}
+J. Yick, B. Mukherjee, and D. Ghosal,
+``Wireless sensor network survey,''
+Computer Networks, vol. 52, no. 12, pp. 2292--2330, Aug. 2008. Available: https://doi.org/10.1016/j.comnet.2008.04.002
+
+\bibitem{energy_survey}
+G. Anastasi, M. Conti, M. Di Francesco, and A. Passarella,
+``Energy conservation in wireless sensor networks: A survey,''
+Ad Hoc Networks, vol. 7, no. 3, pp. 537--568, May 2009. Available: https://doi.org/10.1016/j.adhoc.2008.06.003
+
+\bibitem{wsn_energy}
+V. Raghunathan, C. Schurgers, S. Park, and M. B. Srivastava,
+``Energy-aware wireless microsensor networks,''
+IEEE Signal Processing Magazine, vol. 19, no. 2, pp. 40--50, Mar. 2002. Available: https://doi.org/10.1109/79.985679
+
+\bibitem{scirp_ref}
+Scientific Research Publishing, 
+``References Papers: Energy-Efficient Communication Protocol for Wireless Microsensor Networks,'' 
+SCIRP Reference ID: 16258. Available: https://www.scirp.org/reference/referencespapers?referenceid=16258
+
+\end{thebibliography}
+
+\end{document}

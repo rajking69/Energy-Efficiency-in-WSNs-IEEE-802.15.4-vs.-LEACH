@@ -214,7 +214,7 @@ struct IEEE802154Config {
 
 #### Network Topology
 - Base Station Location: (150m, 150m)
-- Network Area: 300m × 300m
+- Network Area: 1035m × 738m
 - Number of Nodes: 100
 - Node Distribution: Random Uniform
 - Initial Energy: 0.15J per node
@@ -330,45 +330,172 @@ Energy Breakdown:
 ### Project Structure
 ```
 WSN_EnergyEfficient/
-├── 📂 src/
-│   ├── 📂 ieee802154/
-│   │   ├── IEEE802154Node.cc
-│   │   ├── IEEE802154Node.h
-│   │   └── IEEE802154Node.ned
-│   ├── 📂 leach/
-│   │   ├── LeachNode.cc          # LEACH protocol implementation
-│   │   ├── LeachNode.h           # Header definitions
-│   │   └── LeachNode.ned         # Network description
-│   └── 📂 common/
-│       ├── EnergyModel.cc        # Energy consumption model
-│       ├── EnergyModel.h         # Energy parameters
-│       └── NetworkUtils.h        # Common utilities
-├── 📂 simulations/
-│   ├── omnetpp.ini              # Simulation configurations
-│   ├── WSN.ned                  # Network topology
-│   └── Power.anf               # Analysis file
-├── 📂 results/
-│   ├── IEEE802154/             # IEEE 802.15.4 simulation results
-│   │   ├── energy_stats.csv
-│   │   └── network_metrics.csv
-│   └── LEACH/                  # LEACH protocol results
-│       ├── cluster_stats.csv
-│       └── power_consumption.csv
-├── 📂 docs/
-│   ├── 📂 design/
-│   │   ├── architecture.md      # System architecture
-│   │   └── protocols.md         # Protocol specifications
-│   ├── 📂 analysis/
-│   │   ├── metrics.md           # Performance metrics
-│   │   └── results.md           # Result analysis
-│   └── 📂 setup/
-│       ├── installation.md      # Setup instructions
-│       └── configuration.md     # Configuration guide
-├── .gitignore
-├── Makefile                    # Build configuration
-├── README.md                   # Project documentation
-└── LICENSE                     # Project license
+├── WSN_EnergyEfficient/
+│   ├── LeachNode.cc          # LEACH protocol implementation
+│   ├── LeachNode.h           # Header definitions
+│   ├── LeachNode.ned         # Network description
+│   ├── omnetpp.ini          # Simulation configurations
+│   ├── Power.anf            # Analysis file
+│   ├── WSN.ned              # Network topology
+│   └── results/             # Simulation results
+│       ├── Common-#0.sca
+│       ├── Common-#0.vci
+│       ├── Common-#0.vec
+│       ├── General-#0.sca
+│       ├── General-#0.vci
+│       ├── General-#0.vec
+│       ├── IEEE802154-#0.sca
+│       ├── IEEE802154-#0.vci
+│       ├── IEEE802154-#0.vec
+│       ├── LEACH-#0.sca
+│       ├── LEACH-#0.vci
+│       ├── LEACH-#0.vec
+│       ├── LEACH-txPower=2.24-#0.sca
+│       ├── LEACH-txPower=2.24-#0.vci
+│       └── LEACH-txPower=2.24-#0.vec
+├── documentation.tex        # LaTeX documentation
+├── Makefile                # Build configuration
+└── README.md               # Project documentation
 ```
+
+---
+
+## 🚀 Getting Started: How to Run This Project
+
+### What You Need First (Prerequisites)
+1. **OMNeT++** (Version 6.1.0)
+   - This is the main simulation software we use
+   - Download it from: [OMNeT++ Download Page](https://omnetpp.org/download/)
+   - Think of it as your simulation workspace
+
+2. **INET Framework** (Version 4.5.0)
+   - This is like a toolbox for network simulations
+   - We'll install it through OMNeT++
+   - It provides basic networking components
+
+3. **Basic Software Requirements**
+   - A C++ Compiler (comes with OMNeT++)
+   - Qt 5.12 or later (for the graphical interface)
+   - About 5GB free disk space
+   - 8GB RAM recommended
+
+### Step-by-Step Installation Guide 📝
+
+#### Step 1: Install OMNeT++
+
+👉 **For Windows Users:**
+1. Download the Windows version of OMNeT++ 6.1.0
+2. Extract it to a simple folder path (Important!)
+   - ✅ Good example: `D:\omnetpp-6.1.0`
+   - ❌ Avoid: `C:\Program Files\omnetpp` (has spaces)
+3. Open the extracted folder
+4. Double-click `mingwenv.cmd`
+5. In the terminal that opens, type:
+   ```bash
+   ./configure
+   make
+   ```
+6. Wait for it to finish (this might take 15-30 minutes)
+
+👉 **For Linux Users:**
+1. Open terminal and run these commands:
+   ```bash
+   tar xvfz omnetpp-6.1.0-src.tgz
+   cd omnetpp-6.1.0
+   . setenv
+   ./configure
+   make
+   ```
+
+#### Step 2: Install INET Framework
+
+1. Start OMNeT++ (look for "OMNeT++ IDE")
+2. Click on `Help` in the top menu
+3. Select `Install Simulation Models`
+4. Find and select "INET Framework 4.5.0"
+5. Click Next and follow the simple installation steps
+6. When asked to restart OMNeT++, say yes
+
+#### Step 3: Add Our Project
+
+1. Find your OMNeT++ installation folder
+2. Look for a folder called `samples`
+3. Copy our entire `WSN_EnergyEfficient` folder there
+4. In OMNeT++, click `File` → `Import` → `Existing Projects into Workspace`
+5. Select the `WSN_EnergyEfficient` folder
+6. Click `Finish`
+
+#### Step 4: Connect Project with INET
+
+1. Right-click on `WSN_EnergyEfficient` in the Project Explorer
+2. Select `Properties`
+3. Click on `Project References`
+4. Find and check ✓ "INET Framework"
+5. Click `Apply and Close`
+
+#### Step 5: Build & Run! 🚀
+
+1. **Build the Project:**
+   - Right-click `WSN_EnergyEfficient`
+   - Select `Build Project`
+   - Wait for the build to complete (green checkmark)
+
+2. **Run the Simulation:**
+   - Find `omnetpp.ini` in the project
+   - Double-click to open it
+   - Click the green ▶️ (Run) button at the top
+   - Select 'LEACH' or 'IEEE802154' configuration
+   - Click OK to start the simulation
+
+### Having Problems? Common Solutions 🔧
+
+🤔 **Problem:** "Can't find INET Framework"
+- Open OMNeT++
+- Go to `Help` → `Install Simulation Models`
+- Reinstall INET Framework
+
+🤔 **Problem:** "Build Failed"
+- Right-click project → `Clean Project`
+- Then try building again
+- Make sure you have enough disk space
+
+🤔 **Problem:** "Won't Run"
+- Check if all files are in the correct folders
+- Make sure INET is properly linked (Step 4)
+- Try closing and reopening OMNeT++
+
+### What to Expect When Running 📊
+
+The simulation will show:
+- A network of sensor nodes
+- Nodes communicating with each other
+- Energy levels changing
+- Data being transmitted
+
+You can:
+- Pause/resume the simulation
+- Speed up or slow down time
+- View different statistics
+- Change network parameters
+
+### Different Simulation Options
+
+In `omnetpp.ini`, you'll find different settings you can try:
+
+```ini
+[Config LEACH]
+# For testing LEACH protocol
+*.numNodes = 100                    # Number of sensor nodes
+*.deploymentArea = "1035mx738m"     # Size of the network area
+*.baseStationPosition = "150,150"   # Where the base station is
+
+[Config IEEE802154]
+# For testing IEEE 802.15.4
+*.mac.queueLength = 50              # How many messages can be queued
+*.radio.transmitterPower = 2.24mW   # How strong the signal is
+```
+
+Choose what interests you and explore!
 
 ---
 

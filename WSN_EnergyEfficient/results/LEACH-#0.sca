@@ -1,8 +1,8 @@
 version 3
-run LEACH-0-20250706-21:13:49-10824
+run LEACH-0-20250706-21:26:37-4116
 attr configname LEACH
-attr datetime 20250706-21:13:49
-attr datetimef 20250706-211349
+attr datetime 20250706-21:26:37
+attr datetimef 20250706-212637
 attr experiment LEACH
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,7 +10,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network WSN_EnergyEfficient
-attr processid 10824
+attr processid 4116
 attr repetition 0
 attr replication #0
 attr resultdir results
